@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "562470025561",
+    "project_id": "travelshare-c0541",
+    "storage_bucket": "travelshare-c0541.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:562470025561:android:c03416afb0cf927d963448",
+        "android_client_info": {
+          "package_name": "com.example.travelshare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "562470025561-aorulptl854bgri86a9aif6g9sl649j6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.travelshare",
+            "certificate_hash": "6e9aa4059a643eaaa7d5b3459c4fdabd98174369"
+          }
+        },
+        {
+          "client_id": "562470025561-ujapqpjk6gm2kn6qn396gijae2hoal55.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDP-I2IgZLHWId9snypcwepE_WKCwaNo8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "562470025561-ujapqpjk6gm2kn6qn396gijae2hoal55.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
