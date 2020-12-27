@@ -13,7 +13,7 @@
     <string name="logout">Cerrar Sesión</string>
     <string name="guest">Continuar como invitado</string>
 
-    <string name="menu_home">Home</string>
+    <string name="menu_home">TravelShare</string>
     <string name="menu_profile">Perfil</string>
     <string name="menu_new">Nuevo Itinerario</string>
     <string name="menu_saved">Itinerarios Guardados</string>

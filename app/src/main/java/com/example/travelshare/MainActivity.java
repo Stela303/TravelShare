@@ -20,6 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 
 import androidx.navigation.NavController;
@@ -33,7 +34,7 @@ import androidx.appcompat.widget.Toolbar;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private GoogleSignInAccount signInAccount;
+    private FirebaseUser signInAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,14 +59,15 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_profile, R.id.nav_itinerary)
+                R.id.nav_home, R.id.nav_profile, R.id.nav_itinerary, R.id.nav_saved)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        signInAccount = GoogleSignIn.getLastSignedInAccount(this);
+        signInAccount = FirebaseAuth.getInstance().getCurrentUser();
+        //signInAccount = GoogleSignIn.getLastSignedInAccount(this);
         if(signInAccount!= null){
             navUsername.setText(signInAccount.getDisplayName());
             navEmail.setText(signInAccount.getEmail());
