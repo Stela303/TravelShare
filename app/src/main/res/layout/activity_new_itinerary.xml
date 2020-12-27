@@ -15,35 +15,34 @@
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.501"
+        app:layout_constraintVertical_bias="0.41000003"
         app:srcCompat="@drawable/pexels_element_digital_1051077" />
 
     <View
         android:id="@+id/view"
-        android:layout_width="317dp"
-        android:layout_height="486dp"
+        android:layout_width="363dp"
+        android:layout_height="734dp"
         android:layout_marginStart="210dp"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="212dp"
         android:background="#A6FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.100000024" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="253dp"
         android:layout_height="365dp"
-        android:layout_marginStart="71dp"
-        android:layout_marginTop="145dp"
-        android:layout_marginEnd="69dp"
-        android:layout_marginBottom="297dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.32999998">
 
         <TextView
             android:id="@+id/textView2"
@@ -83,17 +82,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="314dp"
-        android:layout_height="200dp"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="562dp"
-        android:layout_marginEnd="41dp"
-        android:layout_marginBottom="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.86">
 
         <Button
             android:id="@+id/button6"
@@ -124,17 +120,15 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="71dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="77dp"
-        android:layout_marginBottom="675dp"
         android:fontFamily="casual"
         android:text="Nuevo itinerario"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.472"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.05" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
