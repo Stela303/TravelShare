@@ -22,16 +22,28 @@
         android:id="@+id/view"
         android:layout_width="317dp"
         android:layout_height="486dp"
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="212dp"
         android:background="#A6FFFFFF"
-        tools:layout_editor_absoluteX="38dp"
-        tools:layout_editor_absoluteY="44dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="253dp"
         android:layout_height="365dp"
+        android:layout_marginStart="71dp"
+        android:layout_marginTop="145dp"
+        android:layout_marginEnd="69dp"
+        android:layout_marginBottom="297dp"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="71dp"
-        tools:layout_editor_absoluteY="145dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView2"
@@ -112,11 +124,17 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="71dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="77dp"
+        android:layout_marginBottom="675dp"
         android:fontFamily="casual"
         android:text="Nuevo itinerario"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="71dp"
-        tools:layout_editor_absoluteY="80dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
