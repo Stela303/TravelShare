@@ -25,4 +25,6 @@
     <string name="menu_new">New Itinenary</string>
     <string name="menu_saved">Saved Itineraries</string>
     <string name="title_activity_guest_main">GuestMainActivity</string>
+
+    <string name="search">Search</string>
 </resources>
