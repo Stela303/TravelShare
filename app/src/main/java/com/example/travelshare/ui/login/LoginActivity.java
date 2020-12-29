@@ -132,6 +132,9 @@ public class LoginActivity extends AppCompatActivity {
                                     if (task1.isSuccessful()){
                                         if(Objects.requireNonNull(task1.getResult()).isEmpty()) {
                                             Map<String, Object> newUser = new HashMap<>();
+                                            if(user.getPhotoUrl()!=null){
+                                                newUser.put("photo", user.getPhotoUrl().toString());
+                                            }
                                             newUser.put("name", user.getDisplayName());
                                             newUser.put("email", user.getEmail());
                                             usersRef.add(newUser);
