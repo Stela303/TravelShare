@@ -1,4 +1,4 @@
-package com.example.travelshare.ui.gallery;
+package com.example.travelshare.ui.profile;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

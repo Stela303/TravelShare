@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,7 +38,7 @@ public class Adapter extends FirestoreRecyclerAdapter<Itinerary, Adapter.ViewHol
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Itinerary model) {
         holder.tittle.setText(model.getTittle());
         holder.location.setText(model.getLocation());
-        holder.rating.setText("Puntuación: "+ model.getRating().toString());
+        holder.rating.setText(String.format("Puntuación: %s", model.getRating().toString()));
         holder.thematic.setText(model.getThematic());
         Picasso.with(this.context).load(model.getImage()).into(holder.image);
         //holder.image.setImageURI(Uri.parse(model.getImage()));
@@ -54,7 +55,8 @@ public class Adapter extends FirestoreRecyclerAdapter<Itinerary, Adapter.ViewHol
         return new ViewHolder(view);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView image;
         TextView tittle;
         TextView location;
@@ -65,6 +67,7 @@ public class Adapter extends FirestoreRecyclerAdapter<Itinerary, Adapter.ViewHol
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             image = (ImageView) itemView.findViewById(R.id.image);
             tittle = (TextView) itemView.findViewById(R.id.tittle);
             location = (TextView) itemView.findViewById(R.id.location);
@@ -72,6 +75,12 @@ public class Adapter extends FirestoreRecyclerAdapter<Itinerary, Adapter.ViewHol
             rating = (TextView) itemView.findViewById(R.id.rating);
             thematic = (TextView) itemView.findViewById(R.id.thematic);
         }
+
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(v.getContext(), "position = " + getLayoutPosition(), Toast.LENGTH_SHORT).show();
+        }
+
     }
 }
 
