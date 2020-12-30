@@ -1,2 +1,3 @@
+include ':PhotoUtil'
 include ':app'
 rootProject.name = "TravelShare"

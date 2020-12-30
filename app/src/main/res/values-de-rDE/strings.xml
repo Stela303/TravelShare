@@ -9,4 +9,16 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <!-- Strings related to new itinerary -->
+    <string name="new_itinerary">Neue Reiseroute</string>
+    <string name="name">Name:</string>
+    <string name="location">Ort:</string>
+    <string name="topic">Thematisch:</string>
+    <string name="add_place_of_interest">Orte von Interesse hinzufügen</string>
+    <string name="add_stay">Aufenthalt hinzufügen</string>
+    <string name="add_food">Essen hinzufügen</string>
+    <string name="save">Sparen</string>
+    <string name="post">Zu posten</string>
+    <string name="share_with_friend">Mit Freunden teilen</string>
+    <string name="comments">Bemerkungen:</string>
 </resources>

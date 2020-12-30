@@ -31,24 +31,24 @@
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.100000024" />
+        app:layout_constraintVertical_bias="0.01999998" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="253dp"
-        android:layout_height="365dp"
+        android:layout_width="294dp"
+        android:layout_height="423dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.32999998">
+        app:layout_constraintVertical_bias="0.32">
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nombre:" />
+            android:text="@string/name" />
 
         <EditText
             android:id="@+id/editTextTextPersonName"
@@ -61,7 +61,7 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ubicación:" />
+            android:text="@string/location" />
 
         <EditText
             android:id="@+id/editTextTextPersonName2"
@@ -74,22 +74,51 @@
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Temática:" />
+            android:text="@string/topic" />
 
         <Spinner
             android:id="@+id/spinner2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <Button
+            android:id="@+id/btn_add_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/coliseo_2"
+            android:drawableTint="@color/white"
+            android:text="@string/add_place_of_interest" />
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/habitacion_3"
+            android:drawableTint="@color/white"
+            android:text="@string/add_stay" />
+
+        <Button
+            android:id="@+id/btn_add_food"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/comer_3"
+            android:drawableTint="@color/white"
+            android:text="@string/add_food" />
+
         <TextView
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Lugares:" />
+            android:text="TextView" />
 
-        <ListView
+        <EditText
+            android:id="@+id/editTextTextMultiLine2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="72dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -100,31 +129,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.86">
+        app:layout_constraintVertical_bias="0.87">
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/btn_save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Añadir lugar" />
+            android:text="@string/save" />
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/btn_share_friends"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Guardar" />
+            android:text="@string/share_with_friend" />
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/btn_post"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Compartir con amigos" />
-
-        <Button
-            android:id="@+id/button9"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Publicar" />
+            android:text="@string/post" />
     </LinearLayout>
 
     <TextView
@@ -132,7 +155,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="casual"
-        android:text="Nuevo itinerario"
+        android:text="@string/new_itinerary"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -141,5 +164,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.05" />
+
+    <requestFocus
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="183dp"
+        tools:layout_editor_absoluteY="302dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

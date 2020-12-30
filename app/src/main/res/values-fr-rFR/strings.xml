@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">TravelShare</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Correo</string>
@@ -9,4 +9,16 @@
     <string name="invalid_username">Nombre de usuario no valido</string>
     <string name="invalid_password">La contraseña debe ser mayor de 5 carácteres</string>
     <string name="login_failed">"Inicio de sesión fallido"</string>
+    <!-- Strings related to new itinerary -->
+    <string name="new_itinerary">Nouvel itinéraire</string>
+    <string name="name">Prénom:</string>
+    <string name="location">Emplacement:</string>
+    <string name="topic">Thématique:</string>
+    <string name="add_place_of_interest">Ajouter un lieu d\'intérêt</string>
+    <string name="add_stay">Ajouter un séjour</string>
+    <string name="add_food">Ajouter de la nourriture</string>
+    <string name="save">Sauvegarder</string>
+    <string name="post">Publier</string>
+    <string name="share_with_friend">Partager avec des amis</string>
+    <string name="comments">Commentaires:</string>
 </resources>
