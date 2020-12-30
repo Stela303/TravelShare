@@ -15,11 +15,16 @@
         android:id="@+id/nav_profile"
         android:name="com.example.travelshare.ui.profile.ProfileFragment"
         android:label="@string/menu_profile"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/nav_itinerary"
         android:name="com.example.travelshare.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_new"
+        tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/nav_saved_itinearies"
+        android:name="com.example.travelshare.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_saved"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>

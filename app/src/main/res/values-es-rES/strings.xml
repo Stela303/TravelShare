@@ -19,4 +19,6 @@
     <string name="menu_saved">Itinerarios Guardados</string>
 
     <string name="search">Buscar</string>
+    <string name="save">Guardar</string>
+    <string name="location">Ubicación</string>
 </resources>
