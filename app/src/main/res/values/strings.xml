@@ -21,6 +21,8 @@
     <string name="title_activity_add_new_stay">AddNewStayActivity</string>
     <!-- Strings related to new itinerary -->
     <string name="new_itinerary">New itinerary</string>
+    <string name="new_place">New place of interest</string>
+    <string name="new_food">New food place</string>
     <string name="name">Name:</string>
     <string name="location">Location:</string>
     <string name="topic">Topic:</string>
@@ -30,5 +32,10 @@
     <string name="save">Save</string>
     <string name="post">Post</string>
     <string name="share_with_friend">Share with friends</string>
+    <string name="info_extra">Additional information:</string>
+    <string name="price_nigth">Price /Nigth:</string>
+    <string name="images">Images:</string>
+    <string name="type">Type:</string>
+    <string name="category">Category:</string>
     <string name="comments">Comments:</string>
 </resources>

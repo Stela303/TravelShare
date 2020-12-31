@@ -4,24 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/coliseo"
+    android:backgroundTint="@color/beige_icons"
+    android:defaultFocusHighlightEnabled="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="172dp"
-        tools:layout_editor_absoluteY="285dp">
+        android:id="@+id/scrollView2"
+        android:layout_width="353dp"
+        android:layout_height="396dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.060000002">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:text="@string/new_place"
+                android:textSize="34sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nombre:" />
+                android:text="@string/name" />
 
             <EditText
                 android:id="@+id/editTextTextPersonName6"
@@ -34,7 +50,7 @@
                 android:id="@+id/textView12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ubicación:" />
+                android:text="@string/location" />
 
             <EditText
                 android:id="@+id/editTextTextPersonName7"
@@ -50,7 +66,7 @@
                 android:text="Precio / Noche:" />
 
             <EditText
-                android:id="@+id/editTextNumber"
+                android:id="@+id/editTextNumberPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -81,4 +97,19 @@
                 android:layout_height="match_parent" />
         </LinearLayout>
     </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:tint="@color/beige_icons"
+        app:backgroundTint="@color/water_green"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.87"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        app:layout_constraintVertical_bias="0.8"
+        app:srcCompat="@drawable/photo_add_roundedblack_512" />
 </androidx.constraintlayout.widget.ConstraintLayout>

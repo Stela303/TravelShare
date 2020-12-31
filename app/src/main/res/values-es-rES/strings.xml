@@ -11,6 +11,8 @@
     <string name="login_failed">"Inicio de sesión fallido"</string>
     <!-- Strings related to new itinerary -->
     <string name="new_itinerary">Nuevo itinerario</string>
+    <string name="new_place">Nuevo lugar de interés</string>
+    <string name="new_food">Nuevo lugar de comida</string>
     <string name="name">Nombre:</string>
     <string name="location">Ubicación:</string>
     <string name="topic">Temática:</string>
@@ -20,5 +22,10 @@
     <string name="save">Guardar</string>
     <string name="post">Publicar</string>
     <string name="share_with_friend">Compartir con amigos</string>
+    <string name="info_extra">Información extra:</string>
+    <string name="price_nigth">Precio/Noche:</string>
+    <string name="images">Imágenes:</string>
+    <string name="type">Tipo:</string>
+    <string name="category">Categoría:</string>
     <string name="comments">Comentarios:</string>
 </resources>
