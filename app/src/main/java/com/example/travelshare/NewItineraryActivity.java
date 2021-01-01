@@ -10,11 +10,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.travelshare.data.model.Itinerary;
+
 import java.util.HashMap;
 
 public class NewItineraryActivity extends AppCompatActivity {
 
-    private HashMap<String,Object> itinerary;
+    private Itinerary itinerary;
 
     EditText nameEditText;
     EditText locationEditText;
@@ -23,17 +25,17 @@ public class NewItineraryActivity extends AppCompatActivity {
 
 
 
-
     //Keys
     private final String NAME="name";
     private final String LOCATION="location";
     private final String TOPIC="topic";
     private final String COMMENTS="comments";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_itinerary);
-        itinerary=new HashMap<>();
+        itinerary=new Itinerary();
         initializeButtons();
         initializeVariables();
     }
@@ -111,12 +113,18 @@ public class NewItineraryActivity extends AppCompatActivity {
     }
 
     private void updateValues(){
-
-        itinerary.put(this.NAME,nameEditText.getText());
-        itinerary.put(this.LOCATION,locationEditText.getText());
-        itinerary.put(this.TOPIC,topicSpinner.getSelectedItem().toString());
-        itinerary.put(this.COMMENTS,commentsEditText.getText());
-
+        if(!nameEditText.getText().toString().equals("")){
+            itinerary.setName(nameEditText.getText().toString());
+        }
+        if(!locationEditText.getText().toString().equals("")){
+            itinerary.setLocation(locationEditText.getText().toString());
+        }
+        if(!topicSpinner.getSelectedItem().toString().equals("")){
+            itinerary.setTopic(topicSpinner.getSelectedItem().toString());
+        }
+        if(!commentsEditText.getText().toString().equals("")){
+            itinerary.setExtraInfo(commentsEditText.getText().toString());
+        }
     }
 
     private void initializeButtons(){
