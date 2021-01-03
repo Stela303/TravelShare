@@ -21,4 +21,5 @@
     <string name="search">Buscar</string>
     <string name="save">Guardar</string>
     <string name="location">Ubicación</string>
+    <string name="save_location_success">¡Localización guardada!</string>
 </resources>
