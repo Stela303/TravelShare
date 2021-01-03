@@ -114,7 +114,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void initializeItinerary(String googleID) {
-        Query query= db.collection("users/"+googleID+"/itineraries");
+        Query query= db.collection("users/"+googleID+"/itineraries").whereEqualTo("prublisher",true);
         FirestoreRecyclerOptions<Itinerary> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Itinerary>()
                 .setQuery(query, Itinerary.class).build();
         mAdapter = new Adapter(firestoreRecyclerOptions, root.getContext());

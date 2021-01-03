@@ -22,4 +22,6 @@
     <string name="save">Guardar</string>
     <string name="location">Ubicación</string>
     <string name="save_location_success">¡Localización guardada!</string>
+    <string name="other_saved">Otros itinerarios</string>
+    <string name="my_saved">Mis itinerarios</string>
 </resources>

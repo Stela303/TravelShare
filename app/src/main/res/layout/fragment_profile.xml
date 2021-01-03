@@ -56,15 +56,15 @@
 
                 <ImageButton
                     android:id="@+id/editProfile"
-                    android:layout_width="30dp"
-                    android:layout_height="28dp"
-                    android:src="@android:drawable/ic_menu_edit"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/editar"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.9"
+                    app:layout_constraintHorizontal_bias="0.883"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.366" />
+                    app:layout_constraintVertical_bias="0.345" />
 
                 <TextView
                     android:id="@+id/emailProfile"
@@ -119,6 +119,12 @@
                 android:id="@+id/itineraries"
                 android:layout_width="match_parent"
                 android:layout_height="201dp"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
                 android:scrollbars="vertical" />
 
         </LinearLayout>
