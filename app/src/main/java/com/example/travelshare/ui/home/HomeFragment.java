@@ -20,6 +20,7 @@ import com.example.travelshare.MainActivity;
 import com.example.travelshare.R;
 import com.example.travelshare.ui.Itinerary;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -40,6 +41,7 @@ public class HomeFragment extends Fragment {
         recyclerViewItinerary.setLayoutManager(new LinearLayoutManager(root.getContext()));
         mFirestore = FirebaseFirestore.getInstance();
         Query query= mFirestore.collection("itineraries");
+        //Query query=mFirestore.document("users/itineraries");
         FirestoreRecyclerOptions<Itinerary> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Itinerary>()
                 .setQuery(query, Itinerary.class).build();
         mAdapter = new Adapter(firestoreRecyclerOptions, root.getContext());
