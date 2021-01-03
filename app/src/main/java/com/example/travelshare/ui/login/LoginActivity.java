@@ -127,7 +127,7 @@ public class LoginActivity extends AppCompatActivity {
                         FirebaseUser user = mAuth.getCurrentUser();
                         FirebaseFirestore db = FirebaseFirestore.getInstance();
                         CollectionReference usersRef = db.collection("users");
-                        usersRef.whereEqualTo("email", Objects.requireNonNull(user).getEmail()).get()
+                        usersRef.whereEqualTo("googleID", Objects.requireNonNull(user).getUid()).get()
                                 .addOnCompleteListener(task1 -> {
                                     if (task1.isSuccessful()){
                                         if(Objects.requireNonNull(task1.getResult()).isEmpty()) {
@@ -135,6 +135,7 @@ public class LoginActivity extends AppCompatActivity {
                                             if(user.getPhotoUrl()!=null){
                                                 newUser.put("photo", user.getPhotoUrl().toString());
                                             }
+                                            newUser.put("googleID", user.getUid());
                                             newUser.put("name", user.getDisplayName());
                                             newUser.put("email", user.getEmail());
                                             usersRef.add(newUser);
