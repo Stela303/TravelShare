@@ -87,7 +87,6 @@ public class ProfileFragment extends Fragment {
             Toast.makeText(root.getContext(), R.string.save_location_success, Toast.LENGTH_SHORT).show();
         });
 
-
         signInAccount = FirebaseAuth.getInstance().getCurrentUser();
         //signInAccount = GoogleSignIn.getLastSignedInAccount(this);
         if(signInAccount!= null){
