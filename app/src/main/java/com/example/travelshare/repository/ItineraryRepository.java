@@ -1,4 +1,4 @@
-package com.example.travelshare.data.repository;
+package com.example.travelshare.repository;
 
 import android.util.Log;
 

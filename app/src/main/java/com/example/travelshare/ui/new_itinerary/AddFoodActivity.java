@@ -1,8 +1,10 @@
-package com.example.travelshare;
+package com.example.travelshare.ui.new_itinerary;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.travelshare.R;
 
 public class AddFoodActivity extends AppCompatActivity {
 

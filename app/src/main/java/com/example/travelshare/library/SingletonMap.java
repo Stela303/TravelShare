@@ -1,4 +1,4 @@
-package com.example.travelshare.data.library;
+package com.example.travelshare.library;
 
 import java.util.HashMap;
 

@@ -28,4 +28,6 @@
     <string name="images">Images:</string>
     <string name="type">Type:</string>
     <string name="category">Catégorie:</string>
+    <string name="fields_itinerary_required_message">Veuillez remplir tous les champs obligatoires</string>
+    <string name="content_itinerary_necessary_message">Veuillez ajouter un lieu d\'intérêt, un séjour ou un repas.</string>
 </resources>

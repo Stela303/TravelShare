@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/comer"
     android:backgroundTint="@color/beige_icons"
-    tools:context=".AddFoodActivity">
+    tools:context=".ui.new_itinerary.AddFoodActivity">
 
     <ScrollView
         android:layout_width="match_parent"

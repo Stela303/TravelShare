@@ -37,7 +37,7 @@
                 android:text="@string/name" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName3"
+                android:id="@+id/editTextName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -50,7 +50,7 @@
                 android:text="@string/location" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName4"
+                android:id="@+id/editTextLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -74,11 +74,11 @@
                 android:text="Precio:" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName5"
+                android:id="@+id/editTextPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName|numberDecimal" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -110,7 +110,7 @@
     </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
+        android:id="@+id/btn_add_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"

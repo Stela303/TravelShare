@@ -28,4 +28,6 @@
     <string name="type">Tipo:</string>
     <string name="category">Categoría:</string>
     <string name="comments">Comentarios:</string>
+    <string name="fields_itinerary_required_message">Por favor, rellene todos los campos obligatorios</string>
+    <string name="content_itinerary_necessary_message">Por favor, añade un lugar de interés, estancia o comida.</string>
 </resources>

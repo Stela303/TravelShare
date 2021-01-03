@@ -1,7 +1,8 @@
-package com.example.travelshare;
+package com.example.travelshare.ui.new_itinerary;
 
 import android.os.Bundle;
 
+import com.example.travelshare.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 

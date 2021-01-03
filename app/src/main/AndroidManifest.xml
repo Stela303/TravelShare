@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.travelshare">
-
+    <meta-data
+        android:name="CLOUDINARY_URL"
+        android:value="cloudinary://967572255845839:dev5wIb6v7IjGSKj_7qaJWidE4c@dycpeixff"/>
     <uses-feature
         android:name="android.hardware.camera2"
         android:required="true" />
-
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="29" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,21 +18,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelShare">
-        <activity android:name=".AddFoodActivity"></activity>
+        <activity android:name=".ui.new_itinerary.AddFoodActivity"></activity>
         <activity
-            android:name=".AddNewStayActivity"
+            android:name=".ui.new_itinerary.AddNewStayActivity"
             android:label="@string/title_activity_add_new_stay"
             android:theme="@style/Theme.TravelShare.NoActionBar" />
         <activity
-            android:name=".AddNewPlaceActivity"
+            android:name=".ui.new_itinerary.AddNewPlaceActivity"
             android:label="@string/title_activity_add_new_place"
             android:theme="@style/Theme.TravelShare.NoActionBar" />
         <activity
-            android:name=".NewItineraryActivity"
+            android:name=".ui.new_itinerary.NewItineraryActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
