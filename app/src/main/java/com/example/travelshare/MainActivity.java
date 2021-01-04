@@ -35,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private FirebaseUser signInAccount;
+    NavigationView navigationView;
+    View headerView;
+    TextView navUsername;
+    TextView navEmail ;
+    ImageView navPhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,30 +47,44 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        this.initilizeAddButton();
+        this.initializeNavigationView();
+        this.initAccount();
+
+
+    }
+
+    private void initilizeAddButton() {
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Intent intent= new Intent(view.getContext(), NewItineraryActivity.class);
+                //startActivityForResult(intent, 0);
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        View headerView = navigationView.getHeaderView(0);
-        TextView navUsername = (TextView) headerView.findViewById(R.id.name);
-        TextView navEmail = (TextView) headerView.findViewById(R.id.email);
-        ImageView navPhoto = headerView.findViewById(R.id.imageView);
+    }
+
+    private void initializeNavigationView() {
+        navigationView = findViewById(R.id.nav_view);
+        headerView = navigationView.getHeaderView(0);
+        navUsername = (TextView) headerView.findViewById(R.id.name);
+        navEmail = (TextView) headerView.findViewById(R.id.email);
+        navPhoto = headerView.findViewById(R.id.imageView);
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_profile, R.id.nav_itinerary, R.id.nav_saved)
-                .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+    }
 
+    private void initAccount() {
         signInAccount = FirebaseAuth.getInstance().getCurrentUser();
         //signInAccount = GoogleSignIn.getLastSignedInAccount(this);
         if(signInAccount!= null){
@@ -76,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(intent);
         }
-
     }
 
     @Override

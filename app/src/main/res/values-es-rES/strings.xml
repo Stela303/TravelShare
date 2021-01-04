@@ -17,4 +17,6 @@
     <string name="menu_profile">Perfil</string>
     <string name="menu_new">Nuevo Itinerario</string>
     <string name="menu_saved">Itinerarios Guardados</string>
+
+    <string name="search">Buscar</string>
 </resources>
