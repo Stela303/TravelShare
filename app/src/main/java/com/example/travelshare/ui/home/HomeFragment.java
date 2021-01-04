@@ -38,8 +38,7 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
         recyclerViewItinerary = root.findViewById(R.id.listItineraries);
         recyclerViewItinerary.setLayoutManager(new LinearLayoutManager(root.getContext()));
         db = FirebaseFirestore.getInstance();
-        Query query= db.collection("itineraries");
-        //Query query=db.document("users/itineraries").collection("itineraries");
+        Query query= db.collectionGroup("itineraries").whereEqualTo("published", true);
         this.initializeItinerary(query);
 
         search = root.findViewById(R.id.search);
@@ -82,7 +81,7 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
         if(newText.length()==0){
             mAdapter.updateOptions(this.firestoreRecyclerOptions);
         }else{
-            Query query= db.collection("itineraries").orderBy("location").startAt(newText)
+            Query query= db.collectionGroup("itineraries").whereEqualTo("published", true).orderBy("location").startAt(newText)
                     .endAt(newText+"\uf8ff");
             FirestoreRecyclerOptions<Itinerary> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Itinerary>()
                     .setQuery(query, Itinerary.class).build();

@@ -18,6 +18,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,8 +39,7 @@ public class GuestMainActivity extends AppCompatActivity implements SearchView.O
         recyclerViewItinerary = findViewById(R.id.listItinerariesGues);
         recyclerViewItinerary.setLayoutManager(new LinearLayoutManager(this));
         db = FirebaseFirestore.getInstance();
-        Query query= db.collection("itineraries");
-        //Query query=db.collection("users");
+        Query query= db.collectionGroup("itineraries").whereEqualTo("published", true);
         this.initializeItinerary(query);
 
         search = findViewById(R.id.searchGues);
@@ -98,7 +98,7 @@ public class GuestMainActivity extends AppCompatActivity implements SearchView.O
         if(newText.length()==0){
             mAdapter.updateOptions(this.firestoreRecyclerOptions);
         }else{
-            Query query= db.collection("itineraries").orderBy("location").startAt(newText).endAt(newText+"\uf8ff");
+            Query query= db.collectionGroup("itineraries").whereEqualTo("published", true).startAt(newText).endAt(newText+"\uf8ff");
             FirestoreRecyclerOptions<Itinerary> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Itinerary>()
                     .setQuery(query, Itinerary.class).build();
             mAdapter.updateOptions(firestoreRecyclerOptions);

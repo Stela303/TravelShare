@@ -5,14 +5,14 @@ public class Itinerary {
     private String tittle;
     private String location;
     private String user;
-    private Double rating;
+    private String rating;
     private String thematic;
 
     public Itinerary(){
 
     }
 
-    public Itinerary(String image, String tittle, String location, String user, Double rating, String thematic) {
+    public Itinerary(String image, String tittle, String location, String user, String rating, String thematic) {
         this.image = image;
         this.tittle = tittle;
         this.location = location;
@@ -37,7 +37,7 @@ public class Itinerary {
         return user;
     }
 
-    public Double getRating() {
+    public String getRating() {
         return rating;
     }
 

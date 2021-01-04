@@ -44,7 +44,7 @@ public class Adapter extends FirestoreRecyclerAdapter<Itinerary, Adapter.ViewHol
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Itinerary model) {
         holder.tittle.setText(model.getTittle());
         holder.location.setText(model.getLocation());
-        holder.rating.setText(String.format("Puntuación: %s", model.getRating().toString()));
+        holder.rating.setText(String.format("Puntuación: "));
         holder.thematic.setText(model.getThematic());
         Picasso.with(this.context).load(model.getImage()).into(holder.image);
         //holder.image.setImageURI(Uri.parse(model.getImage()));
