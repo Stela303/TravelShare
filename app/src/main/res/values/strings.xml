@@ -24,6 +24,11 @@
     <string name="menu_profile">Profile</string>
     <string name="menu_new">New Itinenary</string>
     <string name="menu_saved">Saved Itineraries</string>
+    <string name="save">Save</string>
+    <string name="location">Location</string>
+    <string name="save_location_success">Saved location!</string>
+    <string name="other_saved">Other itineraries</string>
+    <string name="my_saved">My itineraries</string>
     <string name="title_activity_guest_main">GuestMainActivity</string>
 
     <string name="search">Search</string>
