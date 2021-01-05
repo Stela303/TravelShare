@@ -10,15 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.travelshare.ItineraryActivity;
-import com.example.travelshare.ItineraryAdapter;
+import com.example.travelshare.adapter.ItineraryAdapter;
 import com.example.travelshare.R;
 import com.example.travelshare.library.SingletonMap;
 import com.example.travelshare.ui.Itinerary;
 import com.example.travelshare.ui.login.LoginActivity;
-import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
@@ -27,8 +25,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 

@@ -13,14 +13,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.travelshare.ItineraryAdapter;
+import com.example.travelshare.adapter.ItineraryAdapter;
 import com.example.travelshare.ItineraryActivity;
 import com.example.travelshare.R;
 import com.example.travelshare.library.SingletonMap;
 import com.example.travelshare.ui.Itinerary;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;

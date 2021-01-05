@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.travelshare.ItineraryActivity;
-import com.example.travelshare.ItineraryAdapter;
+import com.example.travelshare.adapter.ItineraryAdapter;
 import com.example.travelshare.R;
 import com.example.travelshare.library.SingletonMap;
 import com.example.travelshare.ui.Itinerary;
