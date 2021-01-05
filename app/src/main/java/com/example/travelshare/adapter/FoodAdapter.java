@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.travelshare.R;
+import com.example.travelshare.data.model.FoodPlace;
 import com.example.travelshare.data.model.Itinerary;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -18,7 +19,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.squareup.picasso.Picasso;
 
 
-public class ItineraryAdapter extends FirestoreRecyclerAdapter<Itinerary, ItineraryAdapter.ViewHolder> {
+public class FoodAdapter extends FirestoreRecyclerAdapter<FoodPlace, FoodAdapter.ViewHolder> {
 
     private OnItemClickListener listener;
     Context context;
@@ -28,18 +29,20 @@ public class ItineraryAdapter extends FirestoreRecyclerAdapter<Itinerary, Itiner
      *
      * @param options
      */
-    public ItineraryAdapter(@NonNull FirestoreRecyclerOptions<Itinerary> options, Context context) {
+    public FoodAdapter(@NonNull FirestoreRecyclerOptions<FoodPlace> options, Context context) {
         super(options);
         this.context=context;
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Itinerary model) {
+    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull FoodPlace model) {
         holder.tittle.setText(model.getName());
         holder.location.setText(model.getLocation());
-        holder.user.setText(model.getUser());
-        holder.topic.setText(model.getTopic());
-        Picasso.with(this.context).load(model.getImage()).into(holder.image);
+        holder.type.setText(model.getType());
+        holder.category.setText(model.getCategory());
+        holder.info.setText(model.getExtraInfo());
+        holder.price.setText((int) model.getAveragePrice());
+        Picasso.with(this.context).load(model.getImages().get(0)).into(holder.image);
         //holder.image.setImageURI(Uri.parse(model.getImage()));
         /*
         if(FirebaseAuth.getInstance().getCurrentUser().getUid()!=null && model.getUser().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
@@ -50,7 +53,7 @@ public class ItineraryAdapter extends FirestoreRecyclerAdapter<Itinerary, Itiner
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_itinerary, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_food, viewGroup, false);
         return new ViewHolder(view);
     }
 
@@ -59,17 +62,21 @@ public class ItineraryAdapter extends FirestoreRecyclerAdapter<Itinerary, Itiner
         ImageView image;
         TextView tittle;
         TextView location;
-        TextView user;
-        TextView topic;
+        TextView type;
+        TextView category;
+        TextView info;
+        TextView price;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            image = (ImageView) itemView.findViewById(R.id.image);
-            tittle = (TextView) itemView.findViewById(R.id.tittle);
-            location = (TextView) itemView.findViewById(R.id.location);
-            user = (TextView) itemView.findViewById(R.id.user);
-            topic = (TextView) itemView.findViewById(R.id.topic);
+            image = (ImageView) itemView.findViewById(R.id.imageFood);
+            tittle = (TextView) itemView.findViewById(R.id.tittleFood);
+            location = (TextView) itemView.findViewById(R.id.locationFood);
+            type = (TextView) itemView.findViewById(R.id.typeFood);
+            category = (TextView) itemView.findViewById(R.id.categoryFood);
+            info = (TextView) itemView.findViewById(R.id.infoFood);
+            price = (TextView) itemView.findViewById(R.id.priceFood);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

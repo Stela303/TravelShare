@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">TravelShare</string>
+    <!-- Strings related to login -->
+    <string name = "prompt_email"> Posta </string>
+    <string name = "prompt_password"> Password </string>
+    <string name = "action_sign_in"> Accedi o registrati </string>
+    <string name = "action_sign_in_short"> Accedi </string>
+    <string name = "welcome"> "Benvenuto!" </string>
+    <string name = "invalid_username"> Nome utente non valido </string>
+    <string name = "invalid_password"> La password deve contenere più di 5 caratteri </string>
+    <string name = "login_failed"> "Accesso non riuscito" </string>
+    <string name = "login_google"> Accedi con Google </string>
+    <string name = "logout"> Chiudi sessione </string>
+    <string name = "guest"> Continua come ospite </string>
+
+    <string name = "menu_home"> TravelShare </string>
+    <string name = "menu_profile"> Profilo </string>
+    <string name = "menu_new"> Nuovo itinerario </string>
+    <string name = "menu_saved"> Itinerari salvati </string>
+
+    <string name = "search"> Cerca </string>
+    <string name = "save"> Salva </string>
+    <string name = "location"> Posizione </string>
+    <string name = "save_location_success"> Posizione salvata! </string>
+    <string name = "other_saved"> Altri itinerari </string>
+    <string name = "my_saved"> I miei itinerari </string>
+    <string name = "places"> Luoghi interessanti </string>
+    <string name = "stay"> Soggiorni </string>
+    <string name = "food"> Dove mangiare? </string>
+    <string name = "title_activity_itinerary"> Itinerario </string>
+    <string name = "saved_itinerary"> Itinerario salvato! </string>
+</resources>

@@ -22,7 +22,7 @@ import com.example.travelshare.ItineraryActivity;
 import com.example.travelshare.adapter.ItineraryAdapter;
 import com.example.travelshare.R;
 import com.example.travelshare.library.SingletonMap;
-import com.example.travelshare.ui.Itinerary;
+import com.example.travelshare.data.model.Itinerary;
 import com.example.travelshare.ui.login.LoginActivity;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;

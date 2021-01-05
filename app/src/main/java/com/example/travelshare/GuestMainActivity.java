@@ -1,5 +1,6 @@
 package com.example.travelshare;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,7 +11,7 @@ import android.widget.SearchView;
 
 import com.example.travelshare.adapter.ItineraryAdapter;
 import com.example.travelshare.library.SingletonMap;
-import com.example.travelshare.ui.Itinerary;
+import com.example.travelshare.data.model.Itinerary;
 import com.example.travelshare.ui.login.LoginActivity;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -40,6 +41,17 @@ public class GuestMainActivity extends AppCompatActivity implements SearchView.O
         search = findViewById(R.id.searchGues);
         search.setOnQueryTextListener(this);
 
+        // This callback will only be called when MyFragment is at least Started.
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                AuthUI.getInstance().signOut(getApplicationContext());
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        };
+        this.getOnBackPressedDispatcher().addCallback(this, callback);
+
 
     }
 
@@ -61,9 +73,10 @@ public class GuestMainActivity extends AppCompatActivity implements SearchView.O
         });
     }
 
+
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onDestroy() {
+        super.onDestroy();
         AuthUI.getInstance().signOut(this);
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);

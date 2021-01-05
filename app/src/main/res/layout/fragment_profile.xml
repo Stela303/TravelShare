@@ -19,95 +19,84 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="170dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="10dp"
                 android:paddingStart="10dp"
                 android:paddingLeft="10dp"
                 android:paddingTop="10dp"
                 android:paddingEnd="10dp"
                 android:paddingRight="10dp"
-                android:paddingBottom="10dp"
-                tools:context=".ui.profile.ProfileFragment">
+                android:paddingBottom="10dp">
 
                 <ImageView
                     android:id="@+id/imageProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.056"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.38"
                     tools:src="@tools:sample/avatars" />
 
-                <TextView
-                    android:id="@+id/nameProfile"
-                    android:layout_width="73dp"
-                    android:layout_height="18dp"
-                    android:text="TextView"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.497"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.105" />
-
-                <ImageButton
-                    android:id="@+id/editProfile"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:background="@drawable/editar"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.891"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.31" />
-
-                <TextView
-                    android:id="@+id/emailProfile"
-                    android:layout_width="145dp"
-                    android:layout_height="20dp"
-                    android:text="TextView"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.642"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.600" />
-
-                <Button
-                    android:id="@+id/saveProfile"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:enabled="false"
-                    android:text="@string/save"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0" />
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="10dp">
 
-                <EditText
-                    android:id="@+id/locationProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:enabled="false"
-                    android:inputType="textPersonName"
-                    android:text="@string/location"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.692"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.323" />
+                    <TextView
+                        android:id="@+id/nameProfile"
+                        android:layout_width="73dp"
+                        android:layout_height="18dp" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/locationProfile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:enabled="false"
+                            android:inputType="textPersonName"
+                            android:text="@string/location"
+                            android:textSize="14sp" />
+
+                        <ImageButton
+                            android:id="@+id/editProfile"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:background="@drawable/editar" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/emailProfile"
+                        android:layout_width="145dp"
+                        android:layout_height="20dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/saveProfile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:enabled="false"
+                            android:text="@string/save" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
 
             <View
                 android:id="@+id/divider"
