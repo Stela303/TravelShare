@@ -11,7 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 
-public class AddNewStayActivity extends AppCompatActivity {
+public class AddNewStayActivity extends AddContentNewItineraryActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

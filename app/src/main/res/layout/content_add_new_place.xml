@@ -7,10 +7,9 @@
     android:background="@drawable/coliseo"
     android:backgroundTint="@color/beige_icons"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
     <ScrollView
-        android:layout_width="345dp"
-        android:layout_height="648dp"
+        android:layout_width="349dp"
+        android:layout_height="632dp"
         android:drawingCacheQuality="auto"
         tools:layout_editor_absoluteX="17dp"
         tools:layout_editor_absoluteY="31dp">
@@ -37,7 +36,7 @@
                 android:text="@string/name" />
 
             <EditText
-                android:id="@+id/editTextName"
+                android:id="@+id/namePlacetxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -50,7 +49,7 @@
                 android:text="@string/location" />
 
             <EditText
-                android:id="@+id/editTextLocation"
+                android:id="@+id/locationPlacetxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -63,7 +62,7 @@
                 android:text="@string/topic" />
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/topicPlaceSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -74,50 +73,55 @@
                 android:text="Precio:" />
 
             <EditText
-                android:id="@+id/editTextPrice"
+                android:id="@+id/pricePlacetxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName|numberDecimal" />
 
             <TextView
+                android:id="@+id/textView26"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/info_extra" />
+
+            <EditText
+                android:id="@+id/infoExtraPlacetxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine" />
+
+            <TextView
                 android:id="@+id/textView8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/images" />
-
-            <TableLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_images"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </TableLayout>
+                android:layout_height="match_parent" />
         </LinearLayout>
     </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_add_image"
+        android:id="@+id/btnAddImagePlace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
         app:backgroundTint="@color/water_green"
         app:fabSize="auto"
         app:srcCompat="@drawable/photo_add_roundedblack_512"
-        tools:layout_editor_absoluteX="306dp"
-        tools:layout_editor_absoluteY="687dp" />
+        tools:layout_editor_absoluteX="310dp"
+        tools:layout_editor_absoluteY="663dp" />
+
+    <Button
+        android:id="@+id/btnSavePlace"
+        android:layout_width="228dp"
+        android:layout_height="59dp"
+        android:text="@string/save"
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="694dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="languague_code">fr</string>
     <string name="app_name">TravelShare</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Correo</string>
@@ -30,4 +31,14 @@
     <string name="category">Catégorie:</string>
     <string name="fields_itinerary_required_message">Veuillez remplir tous les champs obligatoires</string>
     <string name="content_itinerary_necessary_message">Veuillez ajouter un lieu d\'intérêt, un séjour ou un repas.</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="place_added">Le lieu d\'intérêt a été ajouté à l\'itinéraire</string>
+    <string name="food_added">Lieu de restauration ajouté à l\'itinéraire</string>
+    <string name="stay_added">Le séjour a été ajouté à l\'itinéraire</string>
+    <string name="do_you_want_add_more_places">Voulez-vous ajouter d\'autres lieux d\'intérêt?</string>
+    <string name="do_you_want_add_more_stay">Voulez-vous ajouter plus de chambres?</string>
+    <string name="do_you_want_add_more_food">Voulez-vous ajouter plus de lieux de restauration?</string>
+    <string name="itinerary_added">Itinéraire créé avec succès</string>
+    <string name="itinerary_add_error">Une erreur est survenue. Impossible de créer l\'itinéraire</string>
 </resources>

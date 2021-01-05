@@ -1,4 +1,5 @@
 <resources>
+    <string name="languague_code">it</string>
     <string name="app_name">TravelShare</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Correo</string>
@@ -30,4 +31,14 @@
     <string name="category">Categoria:</string>
     <string name="fields_itinerary_required_message">Si prega di compilare tutti i campi obbligatori</string>
     <string name="content_itinerary_necessary_message">Aggiungi un luogo di interesse, soggiorno o cibo</string>
+    <string name="yes">Sì</string>
+    <string name="no">No</string>
+    <string name="place_added">Il luogo di interesse è stato aggiunto all\'itinerario</string>
+    <string name="food_added">Locale gastronomico aggiunto all\'itinerario</string>
+    <string name="stay_added">Il soggiorno è stato aggiunto all\'itinerario</string>
+    <string name="do_you_want_add_more_places">Vuoi aggiungere altri luoghi di interesse?</string>
+    <string name="do_you_want_add_more_stay">Vuoi aggiungere altre stanze?</string>
+    <string name="do_you_want_add_more_food">Vuoi aggiungere altri posti dove mangiare?</string>
+    <string name="itinerary_added">Itinerario creato con successo</string>
+    <string name="itinerary_add_error">C\'è stato un errore. Impossibile creare l\'itinerario</string>
 </resources>

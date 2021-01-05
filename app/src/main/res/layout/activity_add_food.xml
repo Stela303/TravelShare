@@ -9,10 +9,14 @@
     tools:context=".ui.new_itinerary.AddFoodActivity">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,7 +38,7 @@
                 android:text="@string/name" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName8"
+                android:id="@+id/nameFoodTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -47,7 +51,7 @@
                 android:text="@string/location" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName2"
+                android:id="@+id/txtFoodLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -71,7 +75,7 @@
                 android:text="@string/category" />
 
             <Spinner
-                android:id="@+id/spinner3"
+                android:id="@+id/categoryFoodSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -82,7 +86,7 @@
                 android:text="TextView" />
 
             <EditText
-                android:id="@+id/editTextNumberDecimal2"
+                android:id="@+id/averagePriceFoodtxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -101,7 +105,7 @@
                 android:text="@string/info_extra" />
 
             <EditText
-                android:id="@+id/editTextTextMultiLine2"
+                android:id="@+id/infoExtraFoodTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"

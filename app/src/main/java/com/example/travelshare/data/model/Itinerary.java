@@ -1,10 +1,9 @@
 package com.example.travelshare.data.model;
 
-import com.google.type.DateTime;
-
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Itinerary {
@@ -14,8 +13,9 @@ public class Itinerary {
     private String location;
     private String topic;
     private String extraInfo;
-    private DateTime date_created;
-    private DateTime date_publishier;
+    private Date date_created;
+    private Date date_publishier;
+    private String userName;
     private List<FoodPlace> foodPlaces;
     private List<InterestingPlace> interestingPlaces;
     private List<Stay> stays;
@@ -71,20 +71,20 @@ public class Itinerary {
         this.extraInfo = extraInfo;
     }
 
-    public DateTime getDate_created() {
+    public Date getDate_created() {
         return date_created;
     }
 
-    public void setDate_created(DateTime date_created) {
+    public void setDate_created(Date date_created) {
         this.date_created = date_created;
     }
 
 
-    public DateTime getDate_publishier() {
+    public Date getDate_publishier() {
         return date_publishier;
     }
 
-    public void setDate_publishier(DateTime date_publishier) {
+    public void setDate_publishier(Date date_publishier) {
         this.date_publishier = date_publishier;
     }
 
@@ -135,6 +135,14 @@ public class Itinerary {
 
     public void removeFoodPlace(FoodPlace foodPlace) {
         this.foodPlaces.remove(foodPlace);
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     @NotNull

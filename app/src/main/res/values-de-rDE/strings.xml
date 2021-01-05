@@ -1,4 +1,5 @@
 <resources>
+    <string name="languague_code">de</string>
     <string name="app_name">TravelShare</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -30,4 +31,14 @@
     <string name="category">Kategorie:</string>
     <string name="fields_itinerary_required_message">Bitte alle benötigten Felder ausfüllen</string>
     <string name="content_itinerary_necessary_message">Bitte fügen Sie einen Ort von Interesse, Aufenthalt oder Essen hinzu.</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
+    <string name="place_added">Der Ort von Interesse wurde der Reiseroute hinzugefügt</string>
+    <string name="food_added">Essensort zur Reiseroute hinzugefügt</string>
+    <string name="stay_added">Der Aufenthalt wurde der Reiseroute hinzugefügt</string>
+    <string name="do_you_want_add_more_places">Möchten Sie weitere Sehenswürdigkeiten hinzufügen?</string>
+    <string name="do_you_want_add_more_stay">Möchten Sie weitere Räume hinzufügen?</string>
+    <string name="do_you_want_add_more_food">Möchten Sie weitere Restaurants hinzufügen?</string>
+    <string name="itinerary_added">Erfolgreich erstellte Reiseroute</string>
+    <string name="itinerary_add_error">Ein Fehler ist aufgetreten. Die Reiseroute konnte nicht erstellt werden</string>
 </resources>

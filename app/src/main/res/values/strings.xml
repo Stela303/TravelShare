@@ -1,4 +1,5 @@
 <resources>
+    <string name="languague_code">en</string>
     <string name="app_name">TravelShare</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -40,4 +41,14 @@
     <string name="comments">Comments:</string>
     <string name="fields_itinerary_required_message">Please fill in all the required fields</string>
     <string name="content_itinerary_necessary_message">Please add a place of interest, stay or food.</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="place_added">The place of interest has been added to the itinerary</string>
+    <string name="food_added">Food venue added to itinerary</string>
+    <string name="stay_added">The stay has been added to the itinerary</string>
+    <string name="do_you_want_add_more_places">Do you want to add more places of interest?</string>
+    <string name="do_you_want_add_more_stay">Do you want to add more rooms?</string>
+    <string name="do_you_want_add_more_food">Do you want to add more food places?</string>
+    <string name="itinerary_added">Successfully created itinerary</string>
+    <string name="itinerary_add_error">An error has occurred. The itinerary could not be created</string>
 </resources>

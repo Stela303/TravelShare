@@ -47,15 +47,11 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-firestore:7.1.1'
     implementation 'androidx.navigation:navigation-fragment:2.3.2'
     implementation 'androidx.navigation:navigation-ui:2.3.2'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation project(":PhotoUtil")
-    compile group: 'com.cloudinary', name: 'cloudinary-android', version: '1.28.2'
-    compile group: 'com.cloudinary', name: 'cloudinary-android-preprocess', version: '1.28.2'
-    compile group: 'com.cloudinary', name: 'cloudinary-android-download', version: '1.28.2'
-
-
 
 
 
