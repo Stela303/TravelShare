@@ -2,7 +2,6 @@ package com.example.travelshare.ui.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +18,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.travelshare.Adapter;
+import com.example.travelshare.ItineraryActivity;
+import com.example.travelshare.ItineraryAdapter;
 import com.example.travelshare.R;
+import com.example.travelshare.library.SingletonMap;
 import com.example.travelshare.ui.Itinerary;
 import com.example.travelshare.ui.login.LoginActivity;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -32,8 +33,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.squareup.picasso.Picasso;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 
@@ -50,7 +49,7 @@ public class ProfileFragment extends Fragment {
     View root;
     FirebaseFirestore db;
     RecyclerView recyclerViewItinerary;
-    Adapter mAdapter;
+    ItineraryAdapter mItineraryAdapter;
 
     private FirebaseUser signInAccount;
 
@@ -88,7 +87,6 @@ public class ProfileFragment extends Fragment {
         });
 
         signInAccount = FirebaseAuth.getInstance().getCurrentUser();
-        //signInAccount = GoogleSignIn.getLastSignedInAccount(this);
         if(signInAccount!= null){
             name.setText(signInAccount.getDisplayName());
             email.setText(signInAccount.getEmail());
@@ -99,7 +97,7 @@ public class ProfileFragment extends Fragment {
                             DocumentSnapshot user= task1.getResult().getDocuments().get(0);
                             String location = (String) user.get("location");
                             userId = (String) user.getId();
-                            this.initializeItinerary((String) user.get("googleID"));
+                            this.initializeItinerary();
                             if(location!=null){
                                 this.location.setText(location);
                             }
@@ -113,13 +111,21 @@ public class ProfileFragment extends Fragment {
         return root;
     }
 
-    private void initializeItinerary(String googleID) {
-        Query query= db.collection("users/"+googleID+"/itineraries").whereEqualTo("prublisher",true);
+    private void initializeItinerary() {
+        Query query= db.collection("users").document(userId).collection("itineraries").whereEqualTo("published",true);
         FirestoreRecyclerOptions<Itinerary> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Itinerary>()
                 .setQuery(query, Itinerary.class).build();
-        mAdapter = new Adapter(firestoreRecyclerOptions, root.getContext());
-        mAdapter.notifyDataSetChanged();
-        recyclerViewItinerary.setAdapter(mAdapter);
-        mAdapter.startListening();
+        mItineraryAdapter = new ItineraryAdapter(firestoreRecyclerOptions, root.getContext());
+        mItineraryAdapter.notifyDataSetChanged();
+        recyclerViewItinerary.setAdapter(mItineraryAdapter);
+        mItineraryAdapter.startListening();
+        mItineraryAdapter.setOnItemClickListener(new ItineraryAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                SingletonMap.getInstance().put("ItineraryDocument", documentSnapshot);
+                Intent intent= new Intent(root.getContext(), ItineraryActivity.class);
+                startActivityForResult(intent, 0);
+            }
+        });
     }
 }

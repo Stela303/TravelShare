@@ -1,25 +1,26 @@
 package com.example.travelshare.ui;
 
+import com.google.firebase.firestore.DocumentSnapshot;
+
 public class Itinerary {
     private String image;
     private String tittle;
     private String location;
     private String user;
-    private String rating;
-    private String thematic;
+    private String topic;
 
     public Itinerary(){
 
     }
 
-    public Itinerary(String image, String tittle, String location, String user, String rating, String thematic) {
+    public Itinerary(String image, String tittle, String location, String user, String topic) {
         this.image = image;
         this.tittle = tittle;
         this.location = location;
         this.user = user;
-        this.rating = rating;
-        this.thematic = thematic;
+        this.topic = topic;
     }
+
 
     public String getImage() {
         return image;
@@ -37,11 +38,8 @@ public class Itinerary {
         return user;
     }
 
-    public String getRating() {
-        return rating;
+    public String getTopic() {
+        return topic;
     }
 
-    public String getThematic() {
-        return thematic;
-    }
 }

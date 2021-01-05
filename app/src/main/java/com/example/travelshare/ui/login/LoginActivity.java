@@ -45,7 +45,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        //updateUI(currentUser);
         if(currentUser!=null){
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
@@ -72,14 +71,12 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         // Sign in success, update UI with the signed-in user's information
                         FirebaseUser user = mAuth.getCurrentUser();
-                        //updateUI(user);
                         Toast.makeText(getApplicationContext(), R.string.welcome, Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), GuestMainActivity.class);
                         startActivity(intent);
                     } else {
                         // If sign in fails, display a message to the user.
                         showLoginFailed(R.string.login_failed);
-                        //updateUI(null);
                     }
                 });
     }
@@ -142,17 +139,13 @@ public class LoginActivity extends AppCompatActivity {
                                         }
                                     }
                                 });
-                        //updateUI(user);
                         Toast.makeText(getApplicationContext(), R.string.welcome, Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
                     } else {
                         // If sign in fails, display a message to the user.
                         showLoginFailed(R.string.login_failed);
-                        //Snackbar.make(mBinding.mainLayout, "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
-                        //updateUI(null);
                     }
-
                     // ...
                 });
     }

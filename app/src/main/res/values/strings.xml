@@ -12,13 +12,6 @@
     <string name="login_google">Sign in with Google</string>
     <string name="logout">Log out</string>
     <string name="guest">Continue as guest</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 
     <string name="menu_home">TravelShare</string>
     <string name="menu_profile">Profile</string>
@@ -29,7 +22,12 @@
     <string name="save_location_success">Saved location!</string>
     <string name="other_saved">Other itineraries</string>
     <string name="my_saved">My itineraries</string>
-    <string name="title_activity_guest_main">GuestMainActivity</string>
+    <string name="places">Interesting Places</string>
+    <string name="stay">Stays</string>
+    <string name="food">Food Places</string>
 
     <string name="search">Search</string>
+    <string name="title_activity_itinerary">Itinerary</string>
+    <string name="saved_itinerary">Saved itinerary!</string>
+
 </resources>

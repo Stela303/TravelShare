@@ -1,5 +1,6 @@
 package com.example.travelshare.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +13,15 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.travelshare.Adapter;
+import com.example.travelshare.ItineraryAdapter;
+import com.example.travelshare.ItineraryActivity;
 import com.example.travelshare.R;
+import com.example.travelshare.library.SingletonMap;
 import com.example.travelshare.ui.Itinerary;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -24,7 +30,7 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
     private HomeViewModel homeViewModel;
     View root;
     RecyclerView recyclerViewItinerary;
-    Adapter mAdapter;
+    ItineraryAdapter mItineraryAdapter;
     FirebaseFirestore db;
     SearchView search;
     FirestoreRecyclerOptions<Itinerary> firestoreRecyclerOptions;
@@ -57,35 +63,41 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
     private void initializeItinerary(Query query) {
         firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Itinerary>()
                 .setQuery(query, Itinerary.class).build();
-        mAdapter = new Adapter(firestoreRecyclerOptions, root.getContext());
-        mAdapter.notifyDataSetChanged();
-        recyclerViewItinerary.setAdapter(mAdapter);
-        mAdapter.startListening();
+        mItineraryAdapter = new ItineraryAdapter(firestoreRecyclerOptions, root.getContext());
+        mItineraryAdapter.notifyDataSetChanged();
+        recyclerViewItinerary.setAdapter(mItineraryAdapter);
+        mItineraryAdapter.startListening();
+        mItineraryAdapter.setOnItemClickListener(new ItineraryAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                SingletonMap.getInstance().put("ItineraryDocument", documentSnapshot);
+                Intent intent= new Intent(root.getContext(), ItineraryActivity.class);
+                startActivityForResult(intent, 0);
+            }
+        });
     }
 
     @Override
     public void onStop(){
         super.onStop();
-        mAdapter.stopListening();
+        mItineraryAdapter.stopListening();
     }
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        return false;
+        return this.onQueryTextChange(query);
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        //Query query= db.collection("users/itineraries").whereEqualTo("tittle", newText);
-       // mAdapter.filter(newText);
         if(newText.length()==0){
-            mAdapter.updateOptions(this.firestoreRecyclerOptions);
+            mItineraryAdapter.updateOptions(this.firestoreRecyclerOptions);
         }else{
             Query query= db.collectionGroup("itineraries").whereEqualTo("published", true).orderBy("location").startAt(newText)
                     .endAt(newText+"\uf8ff");
             FirestoreRecyclerOptions<Itinerary> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Itinerary>()
                     .setQuery(query, Itinerary.class).build();
-            mAdapter.updateOptions(firestoreRecyclerOptions);
+            mItineraryAdapter.updateOptions(firestoreRecyclerOptions);
         }
 
         return false;

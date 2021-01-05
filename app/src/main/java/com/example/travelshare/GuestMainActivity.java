@@ -10,15 +10,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
 
+import com.example.travelshare.library.SingletonMap;
 import com.example.travelshare.ui.Itinerary;
 import com.example.travelshare.ui.login.LoginActivity;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,7 +27,7 @@ import java.util.Map;
 public class GuestMainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
     RecyclerView recyclerViewItinerary;
-    Adapter mAdapter;
+    ItineraryAdapter mItineraryAdapter;
     FirebaseFirestore db;
     SearchView search;
     FirestoreRecyclerOptions<Itinerary> firestoreRecyclerOptions;
@@ -45,37 +46,25 @@ public class GuestMainActivity extends AppCompatActivity implements SearchView.O
         search = findViewById(R.id.searchGues);
         search.setOnQueryTextListener(this);
 
-        this.initilizeAddButton();
 
-    }
-
-    private void initilizeAddButton() {
-        Button fab = findViewById(R.id.button2);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Intent intent= new Intent(view.getContext(), NewItineraryActivity.class);
-                //startActivityForResult(intent, 0);
-                CollectionReference citiesRef = db.collection("users");
-
-                Map<String, Object> ggbData = new HashMap<>();
-                ggbData.put("tittle", "Itinerary1");
-                ggbData.put("rating", "7");
-                citiesRef.document("0cc7rskUu85dxhSaGUXz").collection("itineraries2").add(ggbData);
-
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
     private void initializeItinerary(Query query) {
         firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Itinerary>()
                 .setQuery(query, Itinerary.class).build();
-        mAdapter = new Adapter(firestoreRecyclerOptions, this);
-        mAdapter.notifyDataSetChanged();
-        recyclerViewItinerary.setAdapter(mAdapter);
-        mAdapter.startListening();
+        mItineraryAdapter = new ItineraryAdapter(firestoreRecyclerOptions, this);
+        mItineraryAdapter.notifyDataSetChanged();
+        recyclerViewItinerary.setAdapter(mItineraryAdapter);
+        mItineraryAdapter.startListening();
+        mItineraryAdapter.setOnItemClickListener(new ItineraryAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                SingletonMap.getInstance().put("ItineraryDocument", documentSnapshot);
+                SingletonMap.getInstance().put("Saved", false);
+                Intent intent= new Intent(getApplicationContext(), ItineraryActivity.class);
+                startActivityForResult(intent, 0);
+            }
+        });
     }
 
     @Override
@@ -88,20 +77,20 @@ public class GuestMainActivity extends AppCompatActivity implements SearchView.O
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        return false;
+
+        return this.onQueryTextChange(query);
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        //Query query= db.collection("users/itineraries").whereEqualTo("tittle", newText);
-        // mAdapter.filter(newText);
         if(newText.length()==0){
-            mAdapter.updateOptions(this.firestoreRecyclerOptions);
+            mItineraryAdapter.updateOptions(this.firestoreRecyclerOptions);
         }else{
-            Query query= db.collectionGroup("itineraries").whereEqualTo("published", true).startAt(newText).endAt(newText+"\uf8ff");
+            Query query= db.collectionGroup("itineraries").whereEqualTo("published", true).orderBy("location").startAt(newText)
+                    .endAt(newText+"\uf8ff");
             FirestoreRecyclerOptions<Itinerary> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Itinerary>()
                     .setQuery(query, Itinerary.class).build();
-            mAdapter.updateOptions(firestoreRecyclerOptions);
+            mItineraryAdapter.updateOptions(firestoreRecyclerOptions);
         }
 
         return false;

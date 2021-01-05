@@ -24,4 +24,9 @@
     <string name="save_location_success">¡Localización guardada!</string>
     <string name="other_saved">Otros itinerarios</string>
     <string name="my_saved">Mis itinerarios</string>
+    <string name="places">Lugares Interesantes</string>
+    <string name="stay">Estancias</string>
+    <string name="food">¿Dónde comer?</string>
+    <string name="title_activity_itinerary">Itinerario</string>
+    <string name="saved_itinerary">¡Itinerario guardado!</string>
 </resources>
