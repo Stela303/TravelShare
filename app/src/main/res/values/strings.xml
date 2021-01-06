@@ -37,5 +37,8 @@
     <string name="search">Search</string>
     <string name="title_activity_itinerary">Itinerary</string>
     <string name="saved_itinerary">Saved itinerary!</string>
+    <string name="title_activity_images">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 </resources>

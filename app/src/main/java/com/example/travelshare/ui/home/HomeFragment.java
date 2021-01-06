@@ -7,17 +7,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.travelshare.MainActivity;
 import com.example.travelshare.adapter.ItineraryAdapter;
 import com.example.travelshare.ItineraryActivity;
 import com.example.travelshare.R;
 import com.example.travelshare.library.SingletonMap;
 import com.example.travelshare.data.model.Itinerary;
+import com.example.travelshare.ui.login.LoginActivity;
+import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -44,13 +48,6 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
 
         search = root.findViewById(R.id.search);
         search.setOnQueryTextListener(this);
-
-        /*homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });*/
 
         return root;
     }

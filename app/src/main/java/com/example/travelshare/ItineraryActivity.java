@@ -96,6 +96,9 @@ public class ItineraryActivity extends AppCompatActivity {
         mStayAdapter.setOnItemClickListener(new StayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                SingletonMap.getInstance().put("Document", documentSnapshot);
+                Intent intent= new Intent(getApplicationContext(), ImagesActivity.class);
+                startActivityForResult(intent, 0);
             }
         });
     }
@@ -111,6 +114,9 @@ public class ItineraryActivity extends AppCompatActivity {
         mFoodAdapter.setOnItemClickListener(new FoodAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                SingletonMap.getInstance().put("Document", documentSnapshot);
+                Intent intent= new Intent(getApplicationContext(), ImagesActivity.class);
+                startActivityForResult(intent, 0);
             }
         });
     }
@@ -126,6 +132,9 @@ public class ItineraryActivity extends AppCompatActivity {
         mPlacesAdapter.setOnItemClickListener(new PlaceAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                SingletonMap.getInstance().put("Document", documentSnapshot);
+                Intent intent= new Intent(getApplicationContext(), ImagesActivity.class);
+                startActivityForResult(intent, 0);
             }
         });
     }
