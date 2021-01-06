@@ -39,7 +39,7 @@ public class StayAdapter extends FirestoreRecyclerAdapter<Stay, StayAdapter.View
         holder.tittle.setText(model.getName());
         holder.location.setText(model.getLocation());
         holder.info.setText(model.getExtraInfo());
-        holder.price.setText((int) model.getPriceNight());
+        holder.price.setText(Double.toString(model.getPriceNight()));
         Picasso.with(this.context).load(model.getImages().get(0)).into(holder.image);
         //holder.image.setImageURI(Uri.parse(model.getImage()));
         /*

@@ -27,38 +27,33 @@
                 android:paddingRight="10dp"
                 android:paddingBottom="10dp">
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/date"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:paddingBottom="10dp">
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:gravity="right"/>
 
-                    <TextView
-                        android:id="@+id/tittleItinerary"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingEnd="30dp"
-                        android:text="TextView"
-                        android:textSize="25sp" />
-
-                    <TextView
-                        android:id="@+id/date"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="TextView" />
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/tittleItinerary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textSize="25sp" />
 
                 <TextView
                     android:id="@+id/topicItinerary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/locationItinerary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/info"
@@ -96,7 +91,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/placesItinerary"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -128,7 +123,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/staysItinerary"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
             <View
@@ -159,7 +154,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/foodItinerary"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
         </LinearLayout>

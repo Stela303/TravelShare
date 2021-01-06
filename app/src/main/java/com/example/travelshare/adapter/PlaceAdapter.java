@@ -1,6 +1,7 @@
 package com.example.travelshare.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ public class PlaceAdapter extends FirestoreRecyclerAdapter<InterestingPlace, Pla
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull InterestingPlace model) {
         holder.tittle.setText(model.getName());
         holder.location.setText(model.getLocation());
+        holder.price.setText(Double.toString(model.getPrice()));
         holder.info.setText(model.getExtraInfo());
         holder.topic.setText(model.getTopic());
         Picasso.with(this.context).load(model.getImages().get(0)).into(holder.image);
@@ -51,6 +53,7 @@ public class PlaceAdapter extends FirestoreRecyclerAdapter<InterestingPlace, Pla
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_place, viewGroup, false);
         return new ViewHolder(view);
     }

@@ -41,7 +41,7 @@ public class FoodAdapter extends FirestoreRecyclerAdapter<FoodPlace, FoodAdapter
         holder.type.setText(model.getType());
         holder.category.setText(model.getCategory());
         holder.info.setText(model.getExtraInfo());
-        holder.price.setText((int) model.getAveragePrice());
+        holder.price.setText(Double.toString(model.getAveragePrice()));
         Picasso.with(this.context).load(model.getImages().get(0)).into(holder.image);
         //holder.image.setImageURI(Uri.parse(model.getImage()));
         /*

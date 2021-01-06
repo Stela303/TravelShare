@@ -15,8 +15,11 @@ import com.example.travelshare.library.SingletonMap;
 import com.example.travelshare.ui.home.HomeFragment;
 import com.example.travelshare.ui.login.LoginActivity;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -24,16 +27,24 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 public class ItineraryActivity extends AppCompatActivity {
@@ -69,8 +80,7 @@ public class ItineraryActivity extends AppCompatActivity {
         this.initPlaces();
         this.initFood();
         this.initStay();
-        SingletonMap.getInstance().remove("Saved");
-        SingletonMap.getInstance().remove("ItineraryDocument");
+
 
 
     }
@@ -142,6 +152,7 @@ public class ItineraryActivity extends AppCompatActivity {
                 }
             });
         }
+        SingletonMap.getInstance().remove("Saved");
     }
 
 
@@ -152,11 +163,17 @@ public class ItineraryActivity extends AppCompatActivity {
         topic = findViewById(R.id.topicItinerary);
         info = findViewById(R.id.info);
         places = findViewById(R.id.placesItinerary);
+        places.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         food = findViewById(R.id.foodItinerary);
+        food.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         stays = findViewById(R.id.staysItinerary);
+        stays.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         itinerary= (DocumentSnapshot) SingletonMap.getInstance().get("ItineraryDocument");
+        SingletonMap.getInstance().remove("ItineraryDocument");
         tittle.setText((String) itinerary.get("name"));
-        date.setText((String) itinerary.get("date_publishier"));
+        Date date_publishier=((Timestamp)itinerary.get("date_publishier")).toDate();
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        date.setText(dateFormat.format(date_publishier));
         location.setText((String) itinerary.get("location"));
         topic.setText((String) itinerary.get("topic"));
         info.setText((String) itinerary.get("extraInfo"));

@@ -5,6 +5,7 @@ import com.google.type.DateTime;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Itinerary {
@@ -15,6 +16,8 @@ public class Itinerary {
     private String topic;
     private String user;
     private String extraInfo;
+    private Date date_created;
+    private Date date_publishier;
     private String image;
     private List<FoodPlace> foodPlaces;
     private List<InterestingPlace> interestingPlaces;
@@ -143,5 +146,21 @@ public class Itinerary {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Date getDate_created() {
+        return date_created;
+    }
+
+    public void setDate_created(Date date_created) {
+        this.date_created = date_created;
+    }
+
+    public Date getDate_publishier() {
+        return date_publishier;
+    }
+
+    public void setDate_publishier(Date date_publishier) {
+        this.date_publishier = date_publishier;
     }
 }
