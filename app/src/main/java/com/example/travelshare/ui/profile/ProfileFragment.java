@@ -38,7 +38,6 @@ import java.util.Objects;
 
 public class ProfileFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
     String userId;
     TextView name;
     TextView email;
@@ -55,8 +54,6 @@ public class ProfileFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
         root = inflater.inflate(R.layout.fragment_profile, container, false);
 
         db = FirebaseFirestore.getInstance();
