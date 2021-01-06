@@ -27,7 +27,7 @@ public class AddNewPlaceActivity extends AddContentNewItineraryActivity {
     protected void onCreate(Bundle savedInstanceState) {
         if (SingletonMap.getInstance().containsKey(Constant.ITINERARY_KEY)) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_add_new_place);
+            super.setContentView(R.layout.activity_add_new_place);
             super.itinerary = (Itinerary) SingletonMap.getInstance().get(Constant.ITINERARY_KEY);
             initializeVariables();
             initializeButtons();
@@ -59,13 +59,14 @@ public class AddNewPlaceActivity extends AddContentNewItineraryActivity {
     }
 
     protected boolean checkRequiredFields() {
-        return super.checkRequiredFields() && !priceEditText.getText().toString().equals("") && topicSpinner.getSelectedItem().toString().equals("");
+        return super.checkRequiredFields() && !priceEditText.getText().toString().equals("") ;
+                //&& topicSpinner.getSelectedItem().toString().equals("");
     }
 
     protected void clearText() {
         super.clearText();
         this.priceEditText.setText("");
-        //falta limpiar categorías
+        //falta limpiar tematicas
     }
 
     private void addPlaceOfInterest() {
@@ -78,7 +79,7 @@ public class AddNewPlaceActivity extends AddContentNewItineraryActivity {
     }
 
     private void showDialog(View view) {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getApplicationContext());
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(view.getContext());
         alertDialogBuilder.setTitle(R.string.place_added);
         alertDialogBuilder
                 .setMessage(R.string.do_you_want_add_more_places)

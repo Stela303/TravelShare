@@ -24,6 +24,8 @@
     <string name="new_itinerary">New itinerary</string>
     <string name="new_place">New place of interest</string>
     <string name="new_food">New food place</string>
+    <string name="new_stay">New stay</string>
+    <string name="price_night">Price / Night:</string>
     <string name="name">Name:</string>
     <string name="location">Location:</string>
     <string name="topic">Topic:</string>

@@ -14,6 +14,8 @@
     <string name="new_itinerary">Nuovo itinerario</string>
     <string name="new_place">Nuovo luogo di interesse</string>
     <string name="new_food">Nuovo posto di cibo</string>
+    <string name="new_stay">Nuovo soggiorno</string>
+    <string name="price_night">Prezzo / notte:</string>
     <string name="name">Nome:</string>
     <string name="location">Posizione:</string>
     <string name="topic">Tematico:</string>

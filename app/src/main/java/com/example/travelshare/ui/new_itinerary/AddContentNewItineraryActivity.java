@@ -1,5 +1,6 @@
 package com.example.travelshare.ui.new_itinerary;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -19,9 +20,12 @@ import com.kosalgeek.android.photoutil.GalleryPhoto;
 import java.util.ArrayList;
 import java.util.List;
 
+import pub.devrel.easypermissions.EasyPermissions;
+
 public abstract class AddContentNewItineraryActivity extends AppCompatActivity  {
 
     protected static final int GALLERY_REQUEST = 2200 ;
+    private String[] galleryPermissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
     protected Itinerary itinerary;
     protected GalleryPhoto galleryPhoto;
     RecyclerView recyclerViewContent;
@@ -58,6 +62,7 @@ public abstract class AddContentNewItineraryActivity extends AppCompatActivity  
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (requestCode == GALLERY_REQUEST) {
+                if (EasyPermissions.hasPermissions(this, galleryPermissions)) {
                 this.galleryPhoto.setPhotoUri(data.getData());
                 String photoPath = this.galleryPhoto.getPath();
                 System.out.println("URL:" + photoPath);
@@ -65,6 +70,10 @@ public abstract class AddContentNewItineraryActivity extends AppCompatActivity  
                 imageAdapter = new ImageAdapter(activityReference.getApplicationContext(), this.urls);
                 this.recyclerViewContent.setLayoutManager(new LinearLayoutManager(activityReference.getApplicationContext()));
                 recyclerViewContent.setAdapter(imageAdapter);
+                } else {
+                    EasyPermissions.requestPermissions(this, "Access for storage",
+                            101, galleryPermissions);
+                }
             }
         }
     }
@@ -78,8 +87,10 @@ public abstract class AddContentNewItineraryActivity extends AppCompatActivity  
     }
 
     protected  boolean checkRequiredFields(){
-        return this.nameEditText.getText().toString().equals("") &&
+        return !(this.nameEditText.getText().toString().equals("") &&
         this.locationEditText.getText().toString().equals("")&&
-        this.infoExtraEditText.getText().toString().equals("");
+        this.infoExtraEditText.getText().toString().equals(""));
     }
+
+
 }

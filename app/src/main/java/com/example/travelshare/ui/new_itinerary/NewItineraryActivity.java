@@ -155,7 +155,7 @@ public class NewItineraryActivity extends AppCompatActivity {
     private void nextView(Class<?> cls, View view) {
         if (checkRequiredFields()) {
             updateValues();
-            Intent intent = new Intent(view.getContext(), AddNewPlaceActivity.class);
+            Intent intent = new Intent(view.getContext(),cls);
             startActivityForResult(intent, 0);
         } else {
             Toast requiredFieldsToast = Toast.makeText(getApplicationContext(), R.string.fields_itinerary_required_message, Toast.LENGTH_SHORT);

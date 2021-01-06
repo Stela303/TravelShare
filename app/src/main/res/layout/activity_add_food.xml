@@ -82,8 +82,7 @@
             <TextView
                 android:id="@+id/textView19"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_height="wrap_content" />
 
             <EditText
                 android:id="@+id/averagePriceFoodtxt"
@@ -91,12 +90,6 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="numberDecimal" />
-
-            <TextView
-                android:id="@+id/textView25"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/images" />
 
             <TextView
                 android:id="@+id/textView18"
@@ -112,14 +105,33 @@
                 android:gravity="start|top"
                 android:inputType="textMultiLine" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/floatingActionButton4"
+            <TextView
+                android:id="@+id/textView25"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                app:backgroundTint="@color/water_green"
-                app:srcCompat="@drawable/photo_add_roundedblack_512" />
+                android:text="@string/images" />
+
         </LinearLayout>
     </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton4"
+        android:layout_width="66dp"
+        android:layout_height="54dp"
+        android:clickable="true"
+        app:backgroundTint="@color/water_green"
+        app:srcCompat="@drawable/photo_add_roundedblack_512"
+        tools:layout_editor_absoluteX="296dp"
+        tools:layout_editor_absoluteY="703dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableRight="@android:drawable/ic_menu_save"
+        android:drawableTint="#FFFFFF"
+        android:text="@string/save"
+        tools:layout_editor_absoluteX="93dp"
+        tools:layout_editor_absoluteY="703dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
