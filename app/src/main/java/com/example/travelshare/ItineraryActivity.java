@@ -1,50 +1,50 @@
 package com.example.travelshare;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 
-import com.example.travelshare.adapter.FoodAdapter;
-import com.example.travelshare.adapter.ItineraryAdapter;
-import com.example.travelshare.adapter.PlaceAdapter;
-import com.example.travelshare.adapter.StayAdapter;
+import com.example.travelshare.adapter.list.FoodAdapter;
+import com.example.travelshare.adapter.list.ImageAdapter;
+import com.example.travelshare.adapter.list.PlaceAdapter;
+import com.example.travelshare.adapter.list.StayAdapter;
 import com.example.travelshare.data.model.FoodPlace;
 import com.example.travelshare.data.model.InterestingPlace;
 import com.example.travelshare.data.model.Itinerary;
 import com.example.travelshare.data.model.Stay;
 import com.example.travelshare.library.SingletonMap;
-import com.example.travelshare.ui.home.HomeFragment;
-import com.example.travelshare.ui.login.LoginActivity;
+import com.example.travelshare.util.Utility;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class ItineraryActivity extends AppCompatActivity {
@@ -55,9 +55,20 @@ public class ItineraryActivity extends AppCompatActivity {
     TextView topic;
     TextView info;
     DocumentSnapshot itinerary;
+    Itinerary itineraryObject;
+    LinearLayout linearPlaces;
+    LinearLayout linearFood;
+    LinearLayout linearStay;
+    View dividerPlaces;
+    View dividerStay;
+    ListView places;
+    ListView food;
+    ListView stays;
+    /*
     RecyclerView places;
     RecyclerView food;
     RecyclerView stays;
+     */
     FirebaseFirestore db;
     String userId;
     private FirebaseUser signInAccount;
@@ -78,13 +89,36 @@ public class ItineraryActivity extends AppCompatActivity {
         this.initVariables();
         this.initSaveButton();
         this.initPlaces();
-        this.initFood();
         this.initStay();
+        this.initFood();
+        Utility.setListViewHeightBasedOnChildren(this.places);
+        Utility.setListViewHeightBasedOnChildren(this.stays);
+        Utility.setListViewHeightBasedOnChildren(this.food);
 
 
     }
 
     private void initStay() {
+
+        List<Stay> stays=itineraryObject.getStays();
+        if(stays!=null){
+            StayAdapter adapter = new StayAdapter(this, stays);
+            this.stays.setAdapter(adapter);
+            this.stays.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    SingletonMap.getInstance().put("Images", stays.get(position).getImages());
+                    SingletonMap.getInstance().put("Location", stays.get(position).getLocation());
+                    Intent intent = new Intent(getApplicationContext(), ImagesActivity.class);
+                    startActivityForResult(intent, 0);
+                }
+            });
+        }else{
+            linearStay.setVisibility(View.INVISIBLE);
+            dividerStay.setVisibility(View.INVISIBLE);
+        }
+
+        /*
         Query query = itinerary.getReference().collection("stays");
         FirestoreRecyclerOptions firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Stay>()
                 .setQuery(query, Stay.class).build();
@@ -99,12 +133,30 @@ public class ItineraryActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), ImagesActivity.class);
                 startActivityForResult(intent, 0);
             }
-        });
+        });*/
 
 
     }
 
     private void initFood() {
+
+        List<FoodPlace> food=itineraryObject.getFoodPlaces();
+        if(food!=null){
+            FoodAdapter adapter = new FoodAdapter(this, food);
+            this.food.setAdapter(adapter);
+            this.food.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    SingletonMap.getInstance().put("Images", food.get(position).getImages());
+                    SingletonMap.getInstance().put("Location", food.get(position).getLocation());
+                    Intent intent = new Intent(getApplicationContext(), ImagesActivity.class);
+                    startActivityForResult(intent, 0);
+                }
+            });
+        }else{
+            linearFood.setVisibility(View.INVISIBLE);
+        }
+        /*
         Query query = itinerary.getReference().collection("foodPlaces");
         FirestoreRecyclerOptions firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<FoodPlace>()
                 .setQuery(query, FoodPlace.class).build();
@@ -121,9 +173,29 @@ public class ItineraryActivity extends AppCompatActivity {
             }
         });
 
+         */
+
     }
 
     private void initPlaces() {
+        List<InterestingPlace> places=itineraryObject.getInterestingPlaces();
+        if(places!=null){
+            PlaceAdapter adapter = new PlaceAdapter(this, places);
+            this.places.setAdapter(adapter);
+            this.places.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    SingletonMap.getInstance().put("Images", places.get(position).getImages());
+                    SingletonMap.getInstance().put("Location", places.get(position).getLocation());
+                    Intent intent = new Intent(getApplicationContext(), ImagesActivity.class);
+                    startActivityForResult(intent, 0);
+                }
+            });
+        }else{
+            linearPlaces.setVisibility(View.INVISIBLE);
+            dividerPlaces.setVisibility(View.INVISIBLE);
+        }
+        /*
         Query query = itinerary.getReference().collection("interestingPlaces");
         FirestoreRecyclerOptions firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<InterestingPlace>()
                 .setQuery(query, InterestingPlace.class).build();
@@ -139,6 +211,8 @@ public class ItineraryActivity extends AppCompatActivity {
                 startActivityForResult(intent, 0);
             }
         });
+
+         */
 
     }
 
@@ -177,14 +251,25 @@ public class ItineraryActivity extends AppCompatActivity {
         location = findViewById(R.id.locationItinerary);
         topic = findViewById(R.id.topicItinerary);
         info = findViewById(R.id.info);
+        linearPlaces = findViewById(R.id.linearPlaces);
+        linearFood = findViewById(R.id.linearFood);
+        linearStay = findViewById(R.id.linearStay);
+        dividerPlaces = findViewById(R.id.dividerPlaces);
+        dividerStay = findViewById(R.id.dividerStay);
+        places = (ListView) findViewById(R.id.placesItinerary);
+        food = (ListView) findViewById(R.id.foodItinerary);
+        stays = (ListView) findViewById(R.id.staysItinerary);
+        /*
         places = findViewById(R.id.placesItinerary);
         places.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         food = findViewById(R.id.foodItinerary);
         food.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         stays = findViewById(R.id.staysItinerary);
         stays.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+         */
         itinerary = (DocumentSnapshot) SingletonMap.getInstance().get("ItineraryDocument");
         SingletonMap.getInstance().remove("ItineraryDocument");
+        itineraryObject = itinerary.toObject(Itinerary.class);
         tittle.setText((String) itinerary.get("name"));
         Object dateIt = itinerary.get("date_publishier");
         if (dateIt != null) {
@@ -199,8 +284,15 @@ public class ItineraryActivity extends AppCompatActivity {
                 date.setText(dateFormat.format(dateCreated));
             }
         }
-
         location.setText((String) itinerary.get("location"));
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String map = "http://maps.google.com/maps?q=" + itinerary.get("location");
+                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(map));
+                startActivity(i);
+            }
+        });
         topic.setText((String) itinerary.get("topic"));
         info.setText((String) itinerary.get("extraInfo"));
 

@@ -37,4 +37,5 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="maps">Klicken Sie auf die Adresse, um sie in Google Maps zu öffnen.</string>
 </resources>

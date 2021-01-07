@@ -5,13 +5,15 @@ import android.annotation.SuppressLint;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import com.example.travelshare.adapter.ListImageAdapter;
+import com.example.travelshare.adapter.list.ImageAdapter;
 import com.example.travelshare.library.SingletonMap;
 import com.google.firebase.firestore.DocumentSnapshot;
 
@@ -105,11 +107,26 @@ public class ImagesActivity extends AppCompatActivity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
 
-        DocumentSnapshot document= (DocumentSnapshot) SingletonMap.getInstance().get("Document");
-        SingletonMap.getInstance().remove("Document");
+        List<String> images = (List<String>) SingletonMap.getInstance().get("Images");
+        SingletonMap.getInstance().remove("Images");
+        String location = (String) SingletonMap.getInstance().get("Location");
+        SingletonMap.getInstance().remove("Location");
         final ListView lista = (ListView) findViewById(R.id.images);
-        ListImageAdapter adapter = new ListImageAdapter(this, (List<String>) document.get("images"));
+        ImageAdapter adapter = new ImageAdapter(this, images);
         lista.setAdapter(adapter);
+
+        TextView locationView = findViewById(R.id.locationImage);
+        locationView.setText(location);
+        locationView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String map = "http://maps.google.com/maps?q=" + location;
+                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(map));
+                startActivity(i);
+            }
+        });
+
+
 
     }
 

@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.travelshare.ItineraryActivity;
-import com.example.travelshare.adapter.ItineraryAdapter;
+import com.example.travelshare.adapter.recycler.ItineraryAdapter;
 import com.example.travelshare.R;
 import com.example.travelshare.library.SingletonMap;
 import com.example.travelshare.data.model.Itinerary;

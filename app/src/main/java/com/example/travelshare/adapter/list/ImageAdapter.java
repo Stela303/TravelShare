@@ -1,4 +1,4 @@
-package com.example.travelshare.adapter;
+package com.example.travelshare.adapter.list;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class ListImageAdapter extends BaseAdapter {
+public class ImageAdapter extends BaseAdapter {
 
 
     // Declare Variables
@@ -20,7 +20,7 @@ public class ListImageAdapter extends BaseAdapter {
     List<String> images;
     LayoutInflater inflater;
 
-    public ListImageAdapter(Context context, List<String> images) {
+    public ImageAdapter(Context context, List<String> images) {
         this.context = context;
         this.images = images;
     }

@@ -9,7 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.SearchView;
 
-import com.example.travelshare.adapter.ItineraryAdapter;
+import com.example.travelshare.adapter.recycler.ItineraryAdapter;
 import com.example.travelshare.library.SingletonMap;
 import com.example.travelshare.data.model.Itinerary;
 import com.example.travelshare.ui.login.LoginActivity;
