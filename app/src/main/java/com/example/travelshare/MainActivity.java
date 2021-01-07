@@ -50,8 +50,6 @@ public class MainActivity extends AppCompatActivity {
         this.initilizeAddButton();
         this.initializeNavigationView();
         this.initAccount();
-
-
     }
 
     private void initilizeAddButton() {
@@ -88,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void initAccount() {
         signInAccount = FirebaseAuth.getInstance().getCurrentUser();
-        //signInAccount = GoogleSignIn.getLastSignedInAccount(this);
         if(signInAccount!= null){
             navUsername.setText(signInAccount.getDisplayName());
             navEmail.setText(signInAccount.getEmail());

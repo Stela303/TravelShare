@@ -13,22 +13,22 @@
     <string name = "logout"> Sitzung schließen </string>
     <string name = "guest"> Weiter als Gast </string>
 
-    <string name = "menu_home"> TravelShare </string>
-    <string name = "menu_profile"> Profil </string>
-    <string name = "menu_new"> Neue Reiseroute </string>
-    <string name = "menu_saved"> Gespeicherte Reiserouten </string>
+    <string name = "menu_home">TravelShare</string>
+    <string name = "menu_profile">Profil</string>
+    <string name = "menu_new">Neue Reiseroute</string>
+    <string name = "menu_saved">Gespeicherte Reiserouten</string>
 
-    <string name = "search"> Suche </string>
-    <string name = "save"> Speichern </string>
-    <string name = "location"> Location </string>
-    <string name = "save_location_success"> Speicherort gespeichert! </string>
-    <string name = "other_saved"> Andere Reiserouten </string>
-    <string name = "my_saved"> Meine Reiserouten </string>
-    <string name = "places"> Interessante Orte </string>
-    <string name = "stay"> Bleibt </string>
-    <string name = "food"> Wo essen? </string>
-    <string name = "title_activity_itinerary"> Reiseroute </string>
-    <string name = "saved_itinerary"> Reiseroute gespeichert! </string>
+    <string name = "search">Suche</string>
+    <string name = "save">Speichern</string>
+    <string name = "location">Standort</string>
+    <string name = "save_location_success">Speicherort gespeichert!</string>
+    <string name = "other_saved">Andere Reiserouten</string>
+    <string name = "my_saved">Meine Reiserouten</string>
+    <string name = "places">Interessante Orte</string>
+    <string name = "stay">Bleibt</string>
+    <string name = "food">Wo essen?</string>
+    <string name = "title_activity_itinerary">Reiseroute</string>
+    <string name = "saved_itinerary">Reiseroute gespeichert!</string>
 
     <string name="title_activity_main">MainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

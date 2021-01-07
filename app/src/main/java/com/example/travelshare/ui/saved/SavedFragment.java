@@ -63,18 +63,6 @@ public class SavedFragment extends Fragment {
             Intent intent = new Intent(root.getContext(), LoginActivity.class);
             startActivity(intent);
         }
-
-/*
-        mine = root.findViewById(R.id.myItineraries);
-        mine.setOnClickListener(v -> {
-            Toast.makeText(root.getContext(), "MIS ITINERARIOS GUARDADOS", Toast.LENGTH_SHORT).show();
-        });
-        other = root.findViewById(R.id.otherItineraries);
-        other.setOnClickListener(v -> {
-            Toast.makeText(root.getContext(), "ITINERARIOS DE OTROS GUARDADOS", Toast.LENGTH_SHORT).show();
-        });
-
- */
         tabs = root.findViewById(R.id.tabs);
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -99,13 +87,11 @@ public class SavedFragment extends Fragment {
             public void onClickMine(){
                 Query query= db.collection("users").document(userId).collection("itineraries").whereEqualTo("published",false);
                 this.initializeItinerary(query);
-                //Toast.makeText(root.getContext(), "MIS ITINERARIOS GUARDADOS", Toast.LENGTH_SHORT).show();
             }
 
             public void onClickOther(){
                 Query query= db.collection("users").document(userId).collection("saved");
                 this.initializeItinerary(query);
-                //Toast.makeText(root.getContext(), "ITINERARIOS DE OTROS GUARDADOS", Toast.LENGTH_SHORT).show();
             }
             private void initializeItinerary(Query query) {
                 FirestoreRecyclerOptions<Itinerary> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Itinerary>()

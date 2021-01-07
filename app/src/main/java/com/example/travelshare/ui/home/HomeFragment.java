@@ -34,7 +34,6 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_home, container, false);
-        //final TextView textView = root.findViewById(R.id.text_home);
         recyclerViewItinerary = root.findViewById(R.id.listItineraries);
         recyclerViewItinerary.setLayoutManager(new LinearLayoutManager(root.getContext()));
         db = FirebaseFirestore.getInstance();
