@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.travelshare.R;
+import com.example.travelshare.library.CloudStorage;
 import com.example.travelshare.library.Constant;
 import com.example.travelshare.library.SingletonMap;
 import com.example.travelshare.data.model.Itinerary;
@@ -22,9 +24,7 @@ import com.example.travelshare.repository.TopicRepository;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.type.DateTime;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,25 +33,39 @@ import java.util.List;
 public class NewItineraryActivity extends AppCompatActivity {
 
 
-    private Itinerary itinerary;
+        private Itinerary itinerary;
 
 
-    EditText nameEditText;
-    EditText locationEditText;
-    Spinner topicSpinner;
-    EditText commentsEditText;
-    List<String> topics=new ArrayList<>();
-    TopicRepository topicRepository;
+        EditText nameEditText;
+        EditText locationEditText;
+        Spinner topicSpinner;
+        EditText commentsEditText;
+        ArrayList<String> topics;
+        ArrayAdapter<String> topicArrayAdapter;
+        TopicRepository topicRepository;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_itinerary);
-        this.itinerary = new Itinerary();
+        if(SingletonMap.getInstance().get(Constant.ITINERARY_KEY)!=null){
+            this.itinerary=(Itinerary)SingletonMap.getInstance().get(Constant.ITINERARY_KEY);
+            fillFields();
+        }else{
+            this.itinerary = new Itinerary();
+        }
         initializeVariables();
         initializeButtons();
 
+    }
+
+    private void fillFields() {
+        if(!this.itinerary.getExtraInfo().equals("")){
+            commentsEditText.setText(this.itinerary.getExtraInfo());
+        }
+        this.nameEditText.setText(itinerary.getName());
+        this.locationEditText.setText(itinerary.getLocation());
     }
 
 
@@ -90,9 +104,13 @@ public class NewItineraryActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateValues();
-                Intent intent = new Intent(v.getContext(), AddNewPlaceActivity.class);
-                startActivityForResult(intent, 0);
+                if (checkRequiredFields()) {
+                    updateValues();
+                    ItineraryRepository.getInstance().create(itinerary,getApplicationContext(),new CloudStorage(),"");
+                } else {
+                    Toast requiredFieldsToast = Toast.makeText(getApplicationContext(), R.string.fields_itinerary_required_message, Toast.LENGTH_SHORT);
+                    requiredFieldsToast.show();
+                }
             }
         });
     }
@@ -110,14 +128,14 @@ public class NewItineraryActivity extends AppCompatActivity {
     }
 
     private void post() {
-        Button btn = (Button) findViewById(R.id.btn_save);
+        Button btn = (Button) findViewById(R.id.btn_post);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (checKContent()) {
                     updateValues();
                     itinerary.setDate_publishier(new Date());
-                    ItineraryRepository.getInstance().create(itinerary,getApplicationContext());
+                    ItineraryRepository.getInstance().create(itinerary,getApplicationContext(),new CloudStorage(),"");
                 } else {
                     Toast contentNecessaryToast = Toast.makeText(getApplicationContext(), R.string.content_itinerary_necessary_message, Toast.LENGTH_SHORT);
                     contentNecessaryToast.show();
@@ -136,7 +154,7 @@ public class NewItineraryActivity extends AppCompatActivity {
     private void updateValues() {
         itinerary.setName(nameEditText.getText().toString());
         itinerary.setLocation(locationEditText.getText().toString());
-    //    itinerary.setTopic(topicSpinner.getSelectedItem().toString());
+        itinerary.setTopic(topicSpinner.getSelectedItem().toString());
         itinerary.setExtraInfo(commentsEditText.getText().toString());
         SingletonMap.getInstance().put(Constant.ITINERARY_KEY, this.itinerary);
     }
@@ -146,9 +164,11 @@ public class NewItineraryActivity extends AppCompatActivity {
         locationEditText = findViewById(R.id.locationPlacetxt);
         topicSpinner = findViewById(R.id.spinnerTopic);
         commentsEditText = findViewById(R.id.editTextMultilineComments);
+       // this.topicRepository= (TopicRepository) SingletonMap.getInstance().get("topicRepository");
+        this.topicRepository=new TopicRepository();
+        this.topics=new ArrayList<>();
         topics.add("");
-      //  this.topicRepository= (TopicRepository) SingletonMap.getInstance().get("topicRepository");
-      //  this.topicRepository.searchAllTopics(new getAllTopicsOnCompleteListener());
+        this.topicRepository.searchAllTopics(new getAllTopicsOnCompleteListener());
 
     }
 
@@ -174,7 +194,7 @@ public class NewItineraryActivity extends AppCompatActivity {
 
     private boolean checkRequiredFields() {
         return !(nameEditText.getText().toString().equals("")
-//                && topicSpinner.getSelectedItem().toString().equals("")
+                && topicSpinner.getSelectedItem().toString().equals("")
                 && locationEditText.getText().toString().equals("")
                 && commentsEditText.getText().toString().equals(""));
     }
@@ -194,7 +214,8 @@ public class NewItineraryActivity extends AppCompatActivity {
                     for (DocumentSnapshot document : querySnapshot.getDocuments()) {
                         topics.add(document.getString(getString(R.string.languague_code)));
                     }
-                    topicSpinner.setAdapter((SpinnerAdapter) topics);
+                    topicArrayAdapter =new ArrayAdapter<String>(getApplicationContext(),R.layout.spinner_simple_item,topics);
+                    topicSpinner.setAdapter((SpinnerAdapter) topicArrayAdapter);
                 }
 
             } else {

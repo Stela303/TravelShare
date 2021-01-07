@@ -32,9 +32,9 @@ public class AddNewStayActivity extends AddContentNewItineraryActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        super.setContentView(R.layout.activity_add_new_stay);
         if (SingletonMap.getInstance().containsKey(Constant.ITINERARY_KEY)) {
-            super.onCreate(savedInstanceState);
-            super.setContentView(R.layout.activity_add_new_stay);
             super.itinerary = (Itinerary) SingletonMap.getInstance().get(Constant.ITINERARY_KEY);
             initializeVariables();
             initializeButtons();
@@ -79,10 +79,10 @@ public class AddNewStayActivity extends AddContentNewItineraryActivity {
         stay.setName(super.nameEditText.getText().toString());
         stay.setLocation(super.locationEditText.getText().toString());
         stay.setPriceNight((Double.parseDouble(this.priceNight.getText().toString())));
+        stay.setImagesLocal(super.urls);
         if(!super.infoExtraEditText.getText().toString().equals("")){
             stay.setExtraInfo(super.infoExtraEditText.getText().toString());
         }
-        stay.setImages(super.urls);
         this.itinerary.addStay(stay);
         SingletonMap.getInstance().put(Constant.ITINERARY_KEY, this.itinerary);
     }
@@ -107,5 +107,7 @@ public class AddNewStayActivity extends AddContentNewItineraryActivity {
                     }
                 }).create().show();
     }
+
+
 
 }

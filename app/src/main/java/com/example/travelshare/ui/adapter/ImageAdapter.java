@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.travelshare.R;
 import com.example.travelshare.data.model.Image;
+import com.example.travelshare.library.CloudStorage;
 import com.kosalgeek.android.photoutil.ImageLoader;
 import com.squareup.picasso.Picasso;
 
@@ -29,12 +30,15 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder>{
     private List<String> mUrls;
     private final LayoutInflater mInflater;
     private ItemClickListener mClickListener;
+    private CloudStorage cloudStorage=new CloudStorage();
+    private Context  context;
 
     // data is passed into the constructor
     public ImageAdapter(Context context, List<String> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mUrls = new ArrayList<>();
         this.mUrls.addAll(data);
+        this.context=context;
     }
 
     // inflates the row layout from xml when needed
@@ -47,13 +51,15 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder>{
 
     // binds the data to the TextView in each row
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(@NotNull ViewHolder holder, int position) {
         if(mUrls!=null &&!mUrls.isEmpty())
         try {
             System.out.println(position);
             System.out.println(mUrls);
             Bitmap bitmap= ImageLoader.init().from(mUrls.get(position)).getBitmap();
             holder.imageView.setImageBitmap(bitmap);
+            mUrls.set(position,cloudStorage.uploadFile(mUrls.get(position),context).toString());
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

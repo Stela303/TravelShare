@@ -16,6 +16,7 @@
     <string name="new_food">Nuevo lugar de comida</string>
     <string name="new_stay">Nueva estancia</string>
     <string name="price_night">Precio / Noche:</string>
+    <string name="average_price">Precio medio:</string>
     <string name="name">Nombre:</string>
     <string name="location">Ubicación:</string>
     <string name="topic">Temática:</string>

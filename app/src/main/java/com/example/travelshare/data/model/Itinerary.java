@@ -1,5 +1,7 @@
 package com.example.travelshare.data.model;
 
+import com.google.firebase.storage.StorageReference;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ public class Itinerary {
     private Date date_created;
     private Date date_publishier;
     private String userName;
+    private StorageReference coverPhoto;
     private List<FoodPlace> foodPlaces = new ArrayList<>();
     private List<InterestingPlace> interestingPlaces = new ArrayList<>();
     private List<Stay> stays = new ArrayList<>();
@@ -140,6 +143,14 @@ public class Itinerary {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public StorageReference getCoverPhoto() {
+        return coverPhoto;
+    }
+
+    public void setCoverPhoto(StorageReference coverPhoto) {
+        this.coverPhoto = coverPhoto;
     }
 
     @NotNull
