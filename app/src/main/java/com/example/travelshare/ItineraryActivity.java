@@ -90,7 +90,7 @@ public class ItineraryActivity extends AppCompatActivity implements
     private void initStay() {
 
         stayItinerary=itineraryObject.getStays();
-        if(stays!=null){
+        if(stayItinerary!=null){
             mStayAdapter = new StayAdapter(getApplicationContext(), stayItinerary, this);
             this.stays.setAdapter(mStayAdapter);
         }else{
