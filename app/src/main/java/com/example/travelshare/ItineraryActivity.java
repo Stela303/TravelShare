@@ -82,11 +82,10 @@ public class ItineraryActivity extends AppCompatActivity {
         this.initStay();
 
 
-
     }
 
     private void initStay() {
-        Query query= itinerary.getReference().collection("stays");
+        Query query = itinerary.getReference().collection("stays");
         FirestoreRecyclerOptions firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Stay>()
                 .setQuery(query, Stay.class).build();
         mStayAdapter = new StayAdapter(firestoreRecyclerOptions, getApplicationContext());
@@ -97,14 +96,16 @@ public class ItineraryActivity extends AppCompatActivity {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
                 SingletonMap.getInstance().put("Document", documentSnapshot);
-                Intent intent= new Intent(getApplicationContext(), ImagesActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ImagesActivity.class);
                 startActivityForResult(intent, 0);
             }
         });
+
+
     }
 
     private void initFood() {
-        Query query= itinerary.getReference().collection("foodPlaces");
+        Query query = itinerary.getReference().collection("foodPlaces");
         FirestoreRecyclerOptions firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<FoodPlace>()
                 .setQuery(query, FoodPlace.class).build();
         mFoodAdapter = new FoodAdapter(firestoreRecyclerOptions, getApplicationContext());
@@ -115,14 +116,15 @@ public class ItineraryActivity extends AppCompatActivity {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
                 SingletonMap.getInstance().put("Document", documentSnapshot);
-                Intent intent= new Intent(getApplicationContext(), ImagesActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ImagesActivity.class);
                 startActivityForResult(intent, 0);
             }
         });
+
     }
 
     private void initPlaces() {
-        Query query= itinerary.getReference().collection("interestingPlaces");
+        Query query = itinerary.getReference().collection("interestingPlaces");
         FirestoreRecyclerOptions firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<InterestingPlace>()
                 .setQuery(query, InterestingPlace.class).build();
         mPlacesAdapter = new PlaceAdapter(firestoreRecyclerOptions, getApplicationContext());
@@ -133,17 +135,18 @@ public class ItineraryActivity extends AppCompatActivity {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
                 SingletonMap.getInstance().put("Document", documentSnapshot);
-                Intent intent= new Intent(getApplicationContext(), ImagesActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ImagesActivity.class);
                 startActivityForResult(intent, 0);
             }
         });
+
     }
 
     private void initSaveButton() {
         FloatingActionButton fab = findViewById(R.id.fab);
-        if(SingletonMap.getInstance().get("Saved")!=null && !(boolean)SingletonMap.getInstance().get("Saved")){
+        if (SingletonMap.getInstance().get("Saved") != null && !(boolean) SingletonMap.getInstance().get("Saved")) {
             fab.setVisibility(View.INVISIBLE);
-        }else {
+        } else {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -155,6 +158,9 @@ public class ItineraryActivity extends AppCompatActivity {
                                     String location = (String) user.get("location");
                                     userId = (String) user.getId();
                                     db.collection("users").document(userId).collection("saved").add(itinerary.getData());
+                                    //db.collection("users").document(userId).collection("saved").document(itinerary.getId()).collection("interestingPlaces").add(itinerary.)
+                                    //db.collection("users").document(userId).collection("saved").document(itinerary.getId()).collection("foodPlaces")
+                                    //db.collection("users").document(userId).collection("saved").document(itinerary.getId()).collection("stays")
                                     Toast.makeText(getApplicationContext(), R.string.saved_itinerary, Toast.LENGTH_SHORT).show();
                                 }
                             });
@@ -177,12 +183,23 @@ public class ItineraryActivity extends AppCompatActivity {
         food.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         stays = findViewById(R.id.staysItinerary);
         stays.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        itinerary= (DocumentSnapshot) SingletonMap.getInstance().get("ItineraryDocument");
+        itinerary = (DocumentSnapshot) SingletonMap.getInstance().get("ItineraryDocument");
         SingletonMap.getInstance().remove("ItineraryDocument");
         tittle.setText((String) itinerary.get("name"));
-        Date date_publishier=((Timestamp)itinerary.get("date_publishier")).toDate();
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        date.setText(dateFormat.format(date_publishier));
+        Object dateIt = itinerary.get("date_publishier");
+        if (dateIt != null) {
+            Date datePublishier = ((Timestamp) dateIt).toDate();
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            date.setText(dateFormat.format(datePublishier));
+        }else{
+            Object dateItSaved = itinerary.get("date_created");
+            if (dateItSaved != null) {
+                Date dateCreated = ((Timestamp) dateItSaved).toDate();
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                date.setText(dateFormat.format(dateCreated));
+            }
+        }
+
         location.setText((String) itinerary.get("location"));
         topic.setText((String) itinerary.get("topic"));
         info.setText((String) itinerary.get("extraInfo"));
