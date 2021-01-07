@@ -1,43 +1,31 @@
 package com.example.travelshare;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.example.travelshare.adapter.list.FoodAdapter;
-import com.example.travelshare.adapter.list.ImageAdapter;
-import com.example.travelshare.adapter.list.PlaceAdapter;
-import com.example.travelshare.adapter.list.StayAdapter;
+import com.example.travelshare.adapter.recycler.list.FoodAdapter;
+import com.example.travelshare.adapter.recycler.list.PlaceAdapter;
+import com.example.travelshare.adapter.recycler.list.StayAdapter;
 import com.example.travelshare.data.model.FoodPlace;
 import com.example.travelshare.data.model.InterestingPlace;
 import com.example.travelshare.data.model.Itinerary;
 import com.example.travelshare.data.model.Stay;
 import com.example.travelshare.library.SingletonMap;
-import com.example.travelshare.util.Utility;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.squareup.picasso.Picasso;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,7 +35,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-public class ItineraryActivity extends AppCompatActivity {
+public class ItineraryActivity extends AppCompatActivity implements
+        FoodAdapter.OnFoodListener,
+        PlaceAdapter.OnPlaceListener,
+        StayAdapter.OnStayListener{
 
     TextView tittle;
     TextView date;
@@ -61,18 +52,19 @@ public class ItineraryActivity extends AppCompatActivity {
     LinearLayout linearStay;
     View dividerPlaces;
     View dividerStay;
-    ListView places;
-    ListView food;
-    ListView stays;
-    /*
+
     RecyclerView places;
     RecyclerView food;
     RecyclerView stays;
-     */
+
+    List<FoodPlace> foodItinerary;
+    List<InterestingPlace> placeItinerary;
+    List<Stay> stayItinerary;
+
     FirebaseFirestore db;
     String userId;
     private FirebaseUser signInAccount;
-    private PlaceAdapter mPlacesAdapter;
+    private PlaceAdapter mPlaceAdapter;
     private FoodAdapter mFoodAdapter;
     private StayAdapter mStayAdapter;
 
@@ -91,129 +83,42 @@ public class ItineraryActivity extends AppCompatActivity {
         this.initPlaces();
         this.initStay();
         this.initFood();
-        Utility.setListViewHeightBasedOnChildren(this.places);
-        Utility.setListViewHeightBasedOnChildren(this.stays);
-        Utility.setListViewHeightBasedOnChildren(this.food);
 
 
     }
 
     private void initStay() {
 
-        List<Stay> stays=itineraryObject.getStays();
+        stayItinerary=itineraryObject.getStays();
         if(stays!=null){
-            StayAdapter adapter = new StayAdapter(this, stays);
-            this.stays.setAdapter(adapter);
-            this.stays.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    SingletonMap.getInstance().put("Images", stays.get(position).getImages());
-                    SingletonMap.getInstance().put("Location", stays.get(position).getLocation());
-                    Intent intent = new Intent(getApplicationContext(), ImagesActivity.class);
-                    startActivityForResult(intent, 0);
-                }
-            });
+            mStayAdapter = new StayAdapter(getApplicationContext(), stayItinerary, this);
+            this.stays.setAdapter(mStayAdapter);
         }else{
             linearStay.setVisibility(View.INVISIBLE);
             dividerStay.setVisibility(View.INVISIBLE);
         }
-
-        /*
-        Query query = itinerary.getReference().collection("stays");
-        FirestoreRecyclerOptions firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Stay>()
-                .setQuery(query, Stay.class).build();
-        mStayAdapter = new StayAdapter(firestoreRecyclerOptions, getApplicationContext());
-        mStayAdapter.notifyDataSetChanged();
-        stays.setAdapter(mStayAdapter);
-        mStayAdapter.startListening();
-        mStayAdapter.setOnItemClickListener(new StayAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                SingletonMap.getInstance().put("Document", documentSnapshot);
-                Intent intent = new Intent(getApplicationContext(), ImagesActivity.class);
-                startActivityForResult(intent, 0);
-            }
-        });*/
-
-
     }
 
     private void initFood() {
 
-        List<FoodPlace> food=itineraryObject.getFoodPlaces();
-        if(food!=null){
-            FoodAdapter adapter = new FoodAdapter(this, food);
-            this.food.setAdapter(adapter);
-            this.food.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    SingletonMap.getInstance().put("Images", food.get(position).getImages());
-                    SingletonMap.getInstance().put("Location", food.get(position).getLocation());
-                    Intent intent = new Intent(getApplicationContext(), ImagesActivity.class);
-                    startActivityForResult(intent, 0);
-                }
-            });
+        foodItinerary=itineraryObject.getFoodPlaces();
+        if(foodItinerary!=null){
+            mFoodAdapter = new FoodAdapter(getApplicationContext(), foodItinerary, this);
+            this.food.setAdapter(mFoodAdapter);
         }else{
             linearFood.setVisibility(View.INVISIBLE);
         }
-        /*
-        Query query = itinerary.getReference().collection("foodPlaces");
-        FirestoreRecyclerOptions firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<FoodPlace>()
-                .setQuery(query, FoodPlace.class).build();
-        mFoodAdapter = new FoodAdapter(firestoreRecyclerOptions, getApplicationContext());
-        mFoodAdapter.notifyDataSetChanged();
-        food.setAdapter(mFoodAdapter);
-        mFoodAdapter.startListening();
-        mFoodAdapter.setOnItemClickListener(new FoodAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                SingletonMap.getInstance().put("Document", documentSnapshot);
-                Intent intent = new Intent(getApplicationContext(), ImagesActivity.class);
-                startActivityForResult(intent, 0);
-            }
-        });
-
-         */
-
     }
 
     private void initPlaces() {
-        List<InterestingPlace> places=itineraryObject.getInterestingPlaces();
-        if(places!=null){
-            PlaceAdapter adapter = new PlaceAdapter(this, places);
-            this.places.setAdapter(adapter);
-            this.places.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    SingletonMap.getInstance().put("Images", places.get(position).getImages());
-                    SingletonMap.getInstance().put("Location", places.get(position).getLocation());
-                    Intent intent = new Intent(getApplicationContext(), ImagesActivity.class);
-                    startActivityForResult(intent, 0);
-                }
-            });
+        placeItinerary=itineraryObject.getInterestingPlaces();
+        if(placeItinerary!=null){
+            mPlaceAdapter = new PlaceAdapter(getApplicationContext(), placeItinerary, this);
+            this.places.setAdapter(mPlaceAdapter);
         }else{
             linearPlaces.setVisibility(View.INVISIBLE);
             dividerPlaces.setVisibility(View.INVISIBLE);
         }
-        /*
-        Query query = itinerary.getReference().collection("interestingPlaces");
-        FirestoreRecyclerOptions firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<InterestingPlace>()
-                .setQuery(query, InterestingPlace.class).build();
-        mPlacesAdapter = new PlaceAdapter(firestoreRecyclerOptions, getApplicationContext());
-        mPlacesAdapter.notifyDataSetChanged();
-        places.setAdapter(mPlacesAdapter);
-        mPlacesAdapter.startListening();
-        mPlacesAdapter.setOnItemClickListener(new PlaceAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                SingletonMap.getInstance().put("Document", documentSnapshot);
-                Intent intent = new Intent(getApplicationContext(), ImagesActivity.class);
-                startActivityForResult(intent, 0);
-            }
-        });
-
-         */
-
     }
 
     private void initSaveButton() {
@@ -232,9 +137,6 @@ public class ItineraryActivity extends AppCompatActivity {
                                     String location = (String) user.get("location");
                                     userId = (String) user.getId();
                                     db.collection("users").document(userId).collection("saved").add(itinerary.getData());
-                                    //db.collection("users").document(userId).collection("saved").document(itinerary.getId()).collection("interestingPlaces").add(itinerary.)
-                                    //db.collection("users").document(userId).collection("saved").document(itinerary.getId()).collection("foodPlaces")
-                                    //db.collection("users").document(userId).collection("saved").document(itinerary.getId()).collection("stays")
                                     Toast.makeText(getApplicationContext(), R.string.saved_itinerary, Toast.LENGTH_SHORT).show();
                                 }
                             });
@@ -256,17 +158,14 @@ public class ItineraryActivity extends AppCompatActivity {
         linearStay = findViewById(R.id.linearStay);
         dividerPlaces = findViewById(R.id.dividerPlaces);
         dividerStay = findViewById(R.id.dividerStay);
-        places = (ListView) findViewById(R.id.placesItinerary);
-        food = (ListView) findViewById(R.id.foodItinerary);
-        stays = (ListView) findViewById(R.id.staysItinerary);
-        /*
+
         places = findViewById(R.id.placesItinerary);
         places.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        food = findViewById(R.id.foodItinerary);
+        food=findViewById(R.id.foodItinerary);
         food.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         stays = findViewById(R.id.staysItinerary);
         stays.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-         */
+
         itinerary = (DocumentSnapshot) SingletonMap.getInstance().get("ItineraryDocument");
         SingletonMap.getInstance().remove("ItineraryDocument");
         itineraryObject = itinerary.toObject(Itinerary.class);
@@ -296,5 +195,31 @@ public class ItineraryActivity extends AppCompatActivity {
         topic.setText((String) itinerary.get("topic"));
         info.setText((String) itinerary.get("extraInfo"));
 
+    }
+
+    @Override
+    public void onFoodClick(int position) {
+        SingletonMap.getInstance().put("Images", foodItinerary.get(position).getImages());
+        SingletonMap.getInstance().put("Location", foodItinerary.get(position).getLocation());
+        startAplication();
+    }
+
+    private void startAplication() {
+        Intent intent = new Intent(getApplicationContext(), ImagesActivity.class);
+        startActivityForResult(intent, 0);
+    }
+
+    @Override
+    public void onPlaceClick(int position) {
+        SingletonMap.getInstance().put("Images", placeItinerary.get(position).getImages());
+        SingletonMap.getInstance().put("Location", placeItinerary.get(position).getLocation());
+        startAplication();
+    }
+
+    @Override
+    public void onStayClick(int position) {
+        SingletonMap.getInstance().put("Images", stayItinerary.get(position).getImages());
+        SingletonMap.getInstance().put("Location", stayItinerary.get(position).getLocation());
+        startAplication();
     }
 }

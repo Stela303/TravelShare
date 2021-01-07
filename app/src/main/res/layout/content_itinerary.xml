@@ -86,12 +86,10 @@
                 android:text="@string/places"
                 android:textSize="20sp" />
 
-            <ListView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/placesItinerary"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:divider="@null"
-                android:dividerHeight="5dp" />
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
@@ -123,12 +121,10 @@
                 android:text="@string/stay"
                 android:textSize="20sp" />
 
-            <ListView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/staysItinerary"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:divider="@null"
-                android:dividerHeight="5dp" />
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
@@ -160,12 +156,10 @@
                 android:text="@string/food"
                 android:textSize="20sp" />
 
-            <ListView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/foodItinerary"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:divider="@null"
-                android:dividerHeight="5dp" />
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
