@@ -1,5 +1,7 @@
 package com.example.travelshare.data.model;
 
+import com.google.firebase.storage.StorageReference;
+
 import java.util.List;
 
 public class InterestingPlace {
@@ -9,18 +11,19 @@ public class InterestingPlace {
     private String topic;
     private String extraInfo;
     private double price;
-    private List<String> images;
+    private List<String> imagesLocal;
+    private List<StorageReference> images;
 
     public InterestingPlace(){
 
     }
 
-    public InterestingPlace(String name, String location, double price, String extraInfo, List<String> images){
+    public InterestingPlace(String name, String location, double price, String extraInfo, List<String> imagesLocal){
         this.setName(name);
         this.setLocation(location);
         this.setPrice(price);
         this.setExtraInfo(extraInfo);
-        this.setImages(images);
+        this.setImagesLocal(imagesLocal);
     }
 
     public String getName() {
@@ -63,19 +66,33 @@ public class InterestingPlace {
         this.price = price;
     }
 
-    public List<String> getImages() {
+    public List<String> getImagesLocal() {
+        return imagesLocal;
+    }
+
+    public void setImagesLocal(List<String> imagesLocal) {
+        this.imagesLocal = imagesLocal;
+    }
+
+    public void addImageLocal(String image){
+        this.imagesLocal.add(image);
+    }
+    public void deleteImageLocal(String image){
+        this.imagesLocal.remove(image);
+    }
+
+    public List<StorageReference> getImages() {
         return images;
     }
 
-    public void setImages(List<String> images) {
+    public void setImages(List<StorageReference> images) {
         this.images = images;
     }
 
-    public void addImage(String image){
+    public void addImage(StorageReference image){
         this.images.add(image);
     }
-    public void deleteImage(String image){
+    public void deleteImage(StorageReference image){
         this.images.remove(image);
     }
-
 }
