@@ -19,7 +19,6 @@
     <string name = "menu_saved"> Itinéraires enregistrés </string>
 
     <string name = "search"> Rechercher </string>
-    <string name = "save"> Enregistrer </string>
     <string name = "location"> Emplacement </string>
     <string name = "save_location_success"> Emplacement enregistré! </string>
     <string name = "other_saved"> Autres itinéraires </string>
@@ -38,4 +37,38 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="maps">Cliquez sur l\'adresse pour l\'ouvrir dans Google Maps.</string>
+    <string name="languague_code">fr</string>
+    <!-- Strings related to new itinerary -->
+    <string name="new_itinerary">Nouvel itinéraire</string>
+    <string name="new_place">Nouveau lieu d\'intérêt</string>
+    <string name="new_food">Nouveau lieu de restauration</string>
+    <string name="new_stay">Nouveau séjour</string>
+    <string name="price_night">Prix ​​/ nuit:</string>
+    <string name="average_price">Prix ​​moyen:</string>
+    <string name="name">Prénom:</string>
+    <string name="topic">Thématique:</string>
+    <string name="add_place_of_interest">Ajouter un lieu d\'intérêt</string>
+    <string name="add_stay">Ajouter un séjour</string>
+    <string name="add_food">Ajouter de la nourriture</string>
+    <string name="save">Sauvegarder</string>
+    <string name="post">Publier</string>
+    <string name="share_with_friend">Partager avec des amis</string>
+    <string name="comments">Commentaires:</string>
+    <string name="info_extra">Information additionnelle:</string>
+    <string name="price_nigth">Prix ​​/ nuit:</string>
+    <string name="images">Images:</string>
+    <string name="type">Type:</string>
+    <string name="category">Catégorie:</string>
+    <string name="fields_itinerary_required_message">Veuillez remplir tous les champs obligatoires</string>
+    <string name="content_itinerary_necessary_message">Veuillez ajouter un lieu d\'intérêt, un séjour ou un repas.</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="place_added">Le lieu d\'intérêt a été ajouté à l\'itinéraire</string>
+    <string name="food_added">Lieu de restauration ajouté à l\'itinéraire</string>
+    <string name="stay_added">Le séjour a été ajouté à l\'itinéraire</string>
+    <string name="do_you_want_add_more_places">Voulez-vous ajouter d\'autres lieux d\'intérêt?</string>
+    <string name="do_you_want_add_more_stay">Voulez-vous ajouter plus de chambres?</string>
+    <string name="do_you_want_add_more_food">Voulez-vous ajouter plus de lieux de restauration?</string>
+    <string name="itinerary_added">Itinéraire créé avec succès</string>
+    <string name="itinerary_add_error">Une erreur est survenue. Impossible de créer l\'itinéraire</string>
 </resources>
