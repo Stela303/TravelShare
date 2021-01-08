@@ -90,7 +90,7 @@ public class AddFoodActivity extends AddContentNewItineraryActivity {
         foodPlace.setName(super.nameEditText.getText().toString());
         foodPlace.setLocation(super.locationEditText.getText().toString());
         foodPlace.setExtraInfo(super.infoExtraEditText.getText().toString());
-        foodPlace.setImagesLocal(super.urls);
+//        foodPlace.setImagesLocal(super.urls);
         this.itinerary.addFoodPlace(foodPlace);
         SingletonMap.getInstance().put(Constant.ITINERARY_KEY, this.itinerary);
     }

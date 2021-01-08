@@ -3,13 +3,9 @@ package com.example.travelshare.library;
 import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.example.travelshare.R;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -32,54 +28,37 @@ public class CloudStorage {
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     public CloudStorage() {
-         this.storage = FirebaseStorage.getInstance("gs://travelshare-c0541.appspot.com/");
-         this.storageRef=this.storage.getReference();
+        this.storage = FirebaseStorage.getInstance("gs://travelshare-c0541.appspot.com/");
+        this.storageRef=this.storage.getReference();
     }
 
-    public Uri uploadFile(String urlImage, Context context){
+    public String uploadFile(String urlImage, Context context) {
+        final String[] uri = new String[1];
         FirebaseUser user = mAuth.getCurrentUser();
         StorageReference imageRef;
-        if (user != null) {
-            // do your stuff
-        } else {
-            mAuth.signInAnonymously();
+
             Uri file = Uri.fromFile(new File(urlImage));
-             imageRef = storageRef.child("images/"+file.getLastPathSegment());
+            imageRef = storageRef.child("images/" + file.getLastPathSegment());
 
-             Task<Uri> urlTask = imageRef.putFile(file).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                @Override
-                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                    if (!task.isSuccessful()) {
-                        Toast requiredFieldsToast = Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT);
-                        requiredFieldsToast.show();
-                        return null;
-                    } else {
-                        return imageRef.getDownloadUrl();
-                    }
-                }
-            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                @Override
-                public void onComplete(@NonNull Task<Uri> task) {
-                    if (task.isSuccessful()) {
-                        Toast requiredFieldsToast = Toast.makeText(context, "PERFE",Toast.LENGTH_SHORT);
-                        requiredFieldsToast.show();
-                    } else {
-                        Toast requiredFieldsToast = Toast.makeText(context,"ERROR",Toast.LENGTH_SHORT);
-                        requiredFieldsToast.show();
-                    }
-                }
-            });
+            imageRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                                            @Override
+                                                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                                                Task<Uri> url= taskSnapshot.getStorage().getDownloadUrl();
+                                                                uri[0] =url.toString();
+                                                                System.out.println(uri[0]);
+                                                            }
+                                                        }
 
-             return urlTask.getResult();
+            );
 
-    }
-        return null;
+
+        return uri[0];
     }
 
-    public List<String> uploadFiles(List<String> urls,Context context) {
+    public List<String> uploadFiles(List<String> urls, Context context) {
         List<String> images = new ArrayList<>();
         for (String url : urls) {
-            images.add(uploadFile(url,context).toString());
+            images.add(uploadFile(url, context));
         }
         return images;
     }
@@ -95,11 +74,11 @@ public class CloudStorage {
                 UploadTask uploadTask = imageRef.putFile(file);
             }
         }).addOnFailureListener((Executor) this, new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        Log.e("", "signInAnonymously:FAILURE", exception);
-                    }
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Log.e("", "signInAnonymously:FAILURE", exception);
+            }
 
-                });
+        });
     }
 }

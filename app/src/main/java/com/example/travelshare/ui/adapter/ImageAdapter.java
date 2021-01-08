@@ -58,7 +58,8 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder>{
             System.out.println(mUrls);
             Bitmap bitmap= ImageLoader.init().from(mUrls.get(position)).getBitmap();
             holder.imageView.setImageBitmap(bitmap);
-            mUrls.set(position,cloudStorage.uploadFile(mUrls.get(position),context).toString());
+            mUrls.set(position,cloudStorage.uploadFile(mUrls.get(position),context));
+            System.out.println(mUrls.get(position));
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -79,7 +80,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder>{
 
         ViewHolder(View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.image);
+            imageView = itemView.findViewById(R.id.imageIt);
             itemView.setOnClickListener(this);
         }
 

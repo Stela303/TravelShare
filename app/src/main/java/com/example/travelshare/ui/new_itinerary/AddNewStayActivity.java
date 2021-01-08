@@ -79,7 +79,7 @@ public class AddNewStayActivity extends AddContentNewItineraryActivity {
         stay.setName(super.nameEditText.getText().toString());
         stay.setLocation(super.locationEditText.getText().toString());
         stay.setPriceNight((Double.parseDouble(this.priceNight.getText().toString())));
-        stay.setImagesLocal(super.urls);
+//        stay.setImagesLocal(super.urls);
         if(!super.infoExtraEditText.getText().toString().equals("")){
             stay.setExtraInfo(super.infoExtraEditText.getText().toString());
         }

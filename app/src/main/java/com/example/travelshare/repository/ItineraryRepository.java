@@ -71,8 +71,8 @@ public class ItineraryRepository {
 
     private void updateURLPhotosStay(Itinerary itinerary, CloudStorage cloudStorage,Context context) {
        for( Stay stay : itinerary.getStays()){
-           List<String> images = cloudStorage.uploadFiles(stay.getImagesLocal(),context);
-           stay.setImagesLocal(images);
+           //List<String> images = cloudStorage.uploadFiles(stay.getImagesLocal(),context);
+           //stay.setImagesLocal(images);
        }
 
     }

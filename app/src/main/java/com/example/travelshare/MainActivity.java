@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.travelshare.ui.login.LoginActivity;
+import com.example.travelshare.ui.new_itinerary.NewItineraryActivity;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -57,10 +58,9 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent= new Intent(view.getContext(), NewItineraryActivity.class);
-                //startActivityForResult(intent, 0);
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent= new Intent(view.getContext(), NewItineraryActivity.class);
+                startActivityForResult(intent, 0);
+
             }
         });
     }
