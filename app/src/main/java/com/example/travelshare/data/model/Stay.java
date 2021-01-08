@@ -1,27 +1,25 @@
 package com.example.travelshare.data.model;
 
-import com.google.firebase.storage.StorageReference;
-
 import java.util.List;
 
 public class Stay {
 
-    private String id;
     private String name;
     private String location;
     private double priceNight;
     private String  extraInfo;
-    private List<String> imagesLocal;
+    private List<String> images;
 
     public Stay(){
 
     }
 
-    public Stay(String name, String location, double priceNight, String extraInfo){
+    public Stay(String name, String location, double priceNight, String extraInfo, List<String> images){
         this.setName(name);
         this.setLocation(location);
         this.setPriceNight(priceNight);
         this.setExtraInfo(extraInfo);
+        this.setImages(images);
     }
 
     public String getName() {
@@ -57,20 +55,18 @@ public class Stay {
         this.priceNight = price;
     }
 
-
-    public List<String> getImagesLocal() {
-        return imagesLocal;
+    public List<String> getImages() {
+        return images;
     }
 
-    public void setImagesLocal(List<String> imagesLocal) {
-        this.imagesLocal = imagesLocal;
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 
-    public void addImageLocal(String image){
-        this.imagesLocal.add(image);
+    public void addImage(String image){
+        this.images.add(image);
     }
-    public void deleteImageLocal(String image){
-        this.imagesLocal.remove(image);
+    public void deleteImage(String image){
+        this.images.remove(image);
     }
-
 }

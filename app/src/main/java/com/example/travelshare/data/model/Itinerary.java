@@ -1,6 +1,6 @@
 package com.example.travelshare.data.model;
 
-import com.google.firebase.storage.StorageReference;
+import com.google.type.DateTime;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -14,25 +14,30 @@ public class Itinerary {
     private String name;
     private String location;
     private String topic;
+    private String user;
     private String extraInfo;
     private Date date_created;
     private Date date_publishier;
-    private String userName;
-    private StorageReference coverPhoto;
-    private List<FoodPlace> foodPlaces = new ArrayList<>();
-    private List<InterestingPlace> interestingPlaces = new ArrayList<>();
-    private List<Stay> stays = new ArrayList<>();
+    private String image;
+    private List<FoodPlace> foodPlaces;
+    private List<InterestingPlace> interestingPlaces;
+    private List<Stay> stays;
 
 
     public Itinerary() {
 
     }
 
-    public Itinerary(String name, String location, String topic, String extraInfo) {
+    public Itinerary(String name, String location, String topic, String extraInfo, String user, String image) {
+        this.user = user;
+        this.image = image;
         this.setName(name);
         this.setLocation(location);
         this.setTopic(topic);
         this.setExtraInfo(extraInfo);
+        foodPlaces = new ArrayList<>();
+        interestingPlaces = new ArrayList<>();
+        stays = new ArrayList<>();
     }
 
     public String getId() {
@@ -69,23 +74,6 @@ public class Itinerary {
 
     public void setExtraInfo(String extraInfo) {
         this.extraInfo = extraInfo;
-    }
-
-    public Date getDate_created() {
-        return date_created;
-    }
-
-    public void setDate_created(Date date_created) {
-        this.date_created = date_created;
-    }
-
-
-    public Date getDate_publishier() {
-        return date_publishier;
-    }
-
-    public void setDate_publishier(Date date_publishier) {
-        this.date_publishier = date_publishier;
     }
 
     public List<InterestingPlace> getInterestingPlaces() {
@@ -137,22 +125,6 @@ public class Itinerary {
         this.foodPlaces.remove(foodPlace);
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public StorageReference getCoverPhoto() {
-        return coverPhoto;
-    }
-
-    public void setCoverPhoto(StorageReference coverPhoto) {
-        this.coverPhoto = coverPhoto;
-    }
-
     @NotNull
     @Override
     public String toString() {
@@ -160,4 +132,35 @@ public class Itinerary {
     }
 
 
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Date getDate_created() {
+        return date_created;
+    }
+
+    public void setDate_created(Date date_created) {
+        this.date_created = date_created;
+    }
+
+    public Date getDate_publishier() {
+        return date_publishier;
+    }
+
+    public void setDate_publishier(Date date_publishier) {
+        this.date_publishier = date_publishier;
+    }
 }

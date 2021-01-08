@@ -2,24 +2,20 @@ package com.example.travelshare.data.model;
 
 import com.google.firebase.storage.StorageReference;
 import com.google.type.DateTime;
-
 import org.jetbrains.annotations.NotNull;
-
 import java.net.URL;
 import java.util.List;
 import java.util.function.DoubleBinaryOperator;
 
 public class FoodPlace {
 
-    private String id;
     private String name;
     private String location;
     private String type;
     private String category;
     private double averagePrice;
     private String  extraInfo;
-    private List<String> imagesLocal;
-    private List<StorageReference> images;
+    private List<String> images;
 
 
 
@@ -27,11 +23,12 @@ public class FoodPlace {
 
     }
 
-    public FoodPlace(String name, String location, String type, String  extraInfo, String category, double averagePrice){
+    public FoodPlace(String name, String location, String type, String  extraInfo, String category, double averagePrice, List<String> images){
         this.setName(name);
         this.setLocation(location);
         this.setType(type);
         this.setExtraInfo(extraInfo);
+        this.setImages(images);
         this.setAveragePrice(averagePrice);
         this.setCategory(category);
     }
@@ -85,34 +82,18 @@ public class FoodPlace {
         this.averagePrice = averagePrice;
     }
 
-
-    public List<String> getImagesLocal() {
-        return imagesLocal;
-    }
-
-    public void setImagesLocal(List<String> imagesLocal) {
-        this.imagesLocal = imagesLocal;
-    }
-
-    public void addImageLocal(String image){
-        this.imagesLocal.add(image);
-    }
-    public void deleteImageLocal(String image){
-        this.imagesLocal.remove(image);
-    }
-
-    public List<StorageReference> getImages() {
+    public List<String> getImages() {
         return images;
     }
 
-    public void setImages(List<StorageReference> images) {
+    public void setImages(List<String> images) {
         this.images = images;
     }
 
-    public void addImage(StorageReference image){
+    public void addImage(String image){
         this.images.add(image);
     }
-    public void deleteImage(StorageReference image){
+    public void deleteImage(String image){
         this.images.remove(image);
     }
 

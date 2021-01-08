@@ -1,6 +1,5 @@
 <resources>
     <string name="languague_code">es</string>
-    <string name="app_name">TravelShare</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Correo</string>
     <string name="prompt_password">Contraseña</string>
@@ -23,7 +22,6 @@
     <string name="add_place_of_interest">Añadir lugar de interés</string>
     <string name="add_stay">Añadir estancia</string>
     <string name="add_food">Añadir comida</string>
-    <string name="save">Guardar</string>
     <string name="post">Publicar</string>
     <string name="share_with_friend">Compartir con amigos</string>
     <string name="info_extra">Información extra:</string>
@@ -44,4 +42,32 @@
     <string name="do_you_want_add_more_food">¿Desea añadir más lugares de comida?</string>
     <string name="itinerary_added">Itinerario creado con éxito</string>
     <string name="itinerary_add_error">Ha ocurrido un error. El itinerario no se ha podido crear</string>
+    <string name="login_google">Inicia sesión con Google</string>
+    <string name="logout">Cerrar Sesión</string>
+    <string name="guest">Continuar como invitado</string>
+
+    <string name="menu_home">TravelShare</string>
+    <string name="menu_profile">Perfil</string>
+    <string name="menu_new">Nuevo Itinerario</string>
+    <string name="menu_saved">Itinerarios Guardados</string>
+
+    <string name="search">Buscar</string>
+    <string name="save">Guardar</string>
+    <string name="save_location_success">¡Localización guardada!</string>
+    <string name="other_saved">Otros itinerarios</string>
+    <string name="my_saved">Mis itinerarios</string>
+    <string name="places">Lugares Interesantes</string>
+    <string name="stay">Estancias</string>
+    <string name="food">¿Dónde comer?</string>
+    <string name="title_activity_itinerary">Itinerario</string>
+    <string name="saved_itinerary">¡Itinerario guardado!</string>
+
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="maps">Haz click en la dirección para abrirla en Google Maps.</string>
 </resources>

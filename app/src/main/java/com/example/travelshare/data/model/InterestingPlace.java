@@ -6,25 +6,23 @@ import java.util.List;
 
 public class InterestingPlace {
 
-    private String id;
     private String name;
     private String location;
     private String topic;
     private String extraInfo;
     private double price;
-    private List<String> imagesLocal;
-    private List<StorageReference> images;
+    private List<String> images;
 
     public InterestingPlace(){
 
     }
 
-    public InterestingPlace(String name, String location, double price, String extraInfo, List<String> imagesLocal){
+    public InterestingPlace(String name, String location, double price, String extraInfo, List<String> images){
         this.setName(name);
         this.setLocation(location);
         this.setPrice(price);
         this.setExtraInfo(extraInfo);
-        this.setImagesLocal(imagesLocal);
+        this.setImages(images);
     }
 
     public String getName() {
@@ -67,33 +65,19 @@ public class InterestingPlace {
         this.price = price;
     }
 
-    public List<String> getImagesLocal() {
-        return imagesLocal;
-    }
-
-    public void setImagesLocal(List<String> imagesLocal) {
-        this.imagesLocal = imagesLocal;
-    }
-
-    public void addImageLocal(String image){
-        this.imagesLocal.add(image);
-    }
-    public void deleteImageLocal(String image){
-        this.imagesLocal.remove(image);
-    }
-
-    public List<StorageReference> getImages() {
+    public List<String> getImages() {
         return images;
     }
 
-    public void setImages(List<StorageReference> images) {
+    public void setImages(List<String> images) {
         this.images = images;
     }
 
-    public void addImage(StorageReference image){
+    public void addImage(String image){
         this.images.add(image);
     }
-    public void deleteImage(StorageReference image){
+    public void deleteImage(String image){
         this.images.remove(image);
     }
+
 }
