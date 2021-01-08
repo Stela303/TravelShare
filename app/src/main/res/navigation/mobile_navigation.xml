@@ -19,9 +19,9 @@
 
     <fragment
         android:id="@+id/nav_itinerary"
-        android:name="com.example.travelshare.ui.slideshow.SlideshowFragment"
+        android:name="com.example.travelshare.ui.shares_with_me.SharesWithMeFragment"
         android:label="@string/menu_new"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_share_with_me" />
     <fragment
         android:id="@+id/nav_saved"
         android:name="com.example.travelshare.ui.saved.SavedFragment"

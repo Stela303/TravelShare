@@ -71,4 +71,6 @@
     <string name="do_you_want_add_more_food">Vuoi aggiungere altri posti dove mangiare?</string>
     <string name="itinerary_added">Itinerario creato con successo</string>
     <string name="itinerary_add_error">C\'è stato un errore. Impossibile creare l\'itinerario</string>
+    <string name="cover_photo">Foto di copertina:</string>
+    <string name="price">Prezzo:</string>
 </resources>

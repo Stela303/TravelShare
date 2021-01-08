@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.travelshare.data.model.Itinerary;
+import com.example.travelshare.library.Constant;
+import com.example.travelshare.library.SingletonMap;
 import com.example.travelshare.ui.adapter.ImageAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.kosalgeek.android.photoutil.GalleryPhoto;
@@ -36,6 +38,7 @@ public abstract class AddContentNewItineraryActivity extends AppCompatActivity  
 
     protected void initializeVariables(int idNameText, int idLocationText, int idInfoExtra,int idRecyclerView, Activity activityReference) {
         this.nameEditText=(EditText) findViewById(idNameText);
+        this.itinerary=(Itinerary) SingletonMap.getInstance().get(Constant.ITINERARY_KEY);
         this.locationEditText=(EditText) findViewById(idLocationText);
         this.infoExtraEditText=(EditText)findViewById(idInfoExtra);
         this.recyclerViewContent=(RecyclerView) findViewById(idRecyclerView);
@@ -65,7 +68,6 @@ public abstract class AddContentNewItineraryActivity extends AppCompatActivity  
                 if (EasyPermissions.hasPermissions(this, galleryPermissions)) {
                 this.galleryPhoto.setPhotoUri(data.getData());
                 String photoPath = this.galleryPhoto.getPath();
-                System.out.println("URL:" + photoPath);
                 this.urls.add(photoPath);
                 imageAdapter = new ImageAdapter(activityReference.getApplicationContext(), this.urls);
                 this.recyclerViewContent.setLayoutManager(new LinearLayoutManager(activityReference.getApplicationContext()));
@@ -89,7 +91,7 @@ public abstract class AddContentNewItineraryActivity extends AppCompatActivity  
     protected  boolean checkRequiredFields(){
         return !(this.nameEditText.getText().toString().equals("") &&
         this.locationEditText.getText().toString().equals("")&&
-        this.infoExtraEditText.getText().toString().equals(""));
+        this.infoExtraEditText.getText().toString().equals("")) &&this.urls.size()>0;
     }
 
 

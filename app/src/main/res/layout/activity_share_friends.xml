@@ -4,59 +4,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ShareFriendsActivity">
+    tools:context=".ui.new_itinerary.ShareFriendsActivity">
 
-    <SearchView
-        android:layout_width="331dp"
-        android:layout_height="49dp"
+    <ScrollView
+        android:layout_width="393dp"
+        android:layout_height="809dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.081" >
+        app:layout_constraintTop_toTopOf="parent">
 
-    </SearchView>
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="417dp" />
-
-    <ListView
-        android:layout_width="326dp"
-        android:layout_height="248dp"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="135dp" />
-
-    <LinearLayout
-        android:layout_width="326dp"
-        android:layout_height="234dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="35dp"
-        tools:layout_editor_absoluteY="447dp">
-
-        <TextView
-            android:id="@+id/textView19"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:orientation="vertical">
 
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="237dp" />
-    </LinearLayout>
+            <SearchView
+                android:id="@+id/searchUserview"
+                android:layout_width="331dp"
+                android:layout_height="49dp">
 
-    <Button
-        android:id="@+id/btnShareWithFriends"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableRight="@drawable/red_2"
-        android:drawableTint="#FFFFFF"
-        android:text="@string/share_with_friend"
-        tools:layout_editor_absoluteX="76dp"
-        tools:layout_editor_absoluteY="762dp" />
+            </SearchView>
+
+            <ListView
+                android:id="@+id/usersListView"
+                android:layout_width="326dp"
+                android:layout_height="248dp">
+
+            </ListView>
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:layout_width="326dp"
+                android:layout_height="234dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+
+                <ListView
+                    android:id="@+id/selectedListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="247dp" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnShareWithFriends"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/red_2"
+                android:drawableTint="#FFFFFF"
+                android:text="@string/share_with_friend" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

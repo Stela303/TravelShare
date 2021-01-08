@@ -37,6 +37,7 @@ public class AddFoodActivity extends AddContentNewItineraryActivity {
 
     Spinner typesSpinner;
     Spinner categoriesSpinner;
+    EditText averagePrice;
     ArrayList<String> types;
     ArrayAdapter<String> typesArrayAdapter;
     TypeRepository typeRepository;
@@ -57,6 +58,7 @@ public class AddFoodActivity extends AddContentNewItineraryActivity {
         super.initializeVariables(R.id.nameFoodTxt, R.id.txtFoodLocation,R.id.infoExtraFoodTxt,R.id.recyclerviewFood,this);
         typesSpinner= (Spinner) findViewById(R.id.typeFoodSpinner);
         categoriesSpinner =(Spinner) findViewById(R.id.categoryFoodSpinner);
+        averagePrice=(EditText)findViewById(R.id.averagePriceFoodtxt) ;
         typeRepository=new TypeRepository();
         categoryRepository=new CategoryRepository();
         types=new ArrayList<>();
@@ -90,7 +92,9 @@ public class AddFoodActivity extends AddContentNewItineraryActivity {
         foodPlace.setName(super.nameEditText.getText().toString());
         foodPlace.setLocation(super.locationEditText.getText().toString());
         foodPlace.setExtraInfo(super.infoExtraEditText.getText().toString());
-//        foodPlace.setImagesLocal(super.urls);
+        foodPlace.setCategory(categoriesSpinner.getSelectedItem().toString());
+        foodPlace.setType(typesSpinner.getSelectedItem().toString());
+        foodPlace.setImages(super.urls);
         this.itinerary.addFoodPlace(foodPlace);
         SingletonMap.getInstance().put(Constant.ITINERARY_KEY, this.itinerary);
     }
@@ -164,5 +168,9 @@ public class AddFoodActivity extends AddContentNewItineraryActivity {
                 Log.w(TAG, "Error getting documents: ", task.getException());
             }
         }
+    }
+
+    protected boolean checkRequiredFields(){
+        return super.checkRequiredFields() && !typesSpinner.getSelectedItem().toString().equals("") && !categoriesSpinner.getSelectedItem().toString().equals("") && !averagePrice.getText().toString().equals("");
     }
 }

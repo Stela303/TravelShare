@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
@@ -8,164 +8,160 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="738dp"
-        android:layout_height="1060dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.5"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.53"
         app:srcCompat="@drawable/pexels_element_digital_1051077" />
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="589dp"
-        android:layout_height="930dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="212dp"
-        android:background="#A6FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.13"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.93" />
-
     <ScrollView
-        android:layout_width="340dp"
-        android:layout_height="815dp"
-        app:layout_constraintBottom_toTopOf="@id/view"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp"
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:text="@string/new_itinerary"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView2"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/name" />
+
+            <EditText
+                android:id="@+id/namePlacetxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/location" />
+
+            <EditText
+                android:id="@+id/locationPlacetxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/topic" />
+
+            <Spinner
+                android:id="@+id/spinnerTopic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView27"
+                android:layout_width="176dp"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:gravity="start"
+                android:text="@string/cover_photo" />
 
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:text="@string/new_itinerary"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                    android:textStyle="bold" />
+            <Button
+                android:id="@+id/btnAddCoverPhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                app:icon="@drawable/photo" />
 
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/name" />
+            <ImageView
+                android:id="@+id/coverPhotoImageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-                <EditText
-                    android:id="@+id/namePlacetxt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
+            <Button
+                android:id="@+id/btn_add_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/coliseo_2"
+                android:drawableTint="@color/white"
+                android:text="@string/add_place_of_interest" />
 
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/location" />
+            <Button
+                android:id="@+id/btn_add_stay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/habitacion_3"
+                android:drawableTint="@color/white"
+                android:text="@string/add_stay" />
 
-                <EditText
-                    android:id="@+id/locationPlacetxt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
+            <Button
+                android:id="@+id/btn_add_food"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/comer_3"
+                android:drawableTint="@color/white"
+                android:text="@string/add_food" />
 
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/topic" />
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/info_extra" />
 
-                <Spinner
-                    android:id="@+id/spinnerTopic"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/editTextMultilineComments"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine" />
 
-                <Button
-                    android:id="@+id/btn_add_place"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableRight="@drawable/coliseo_2"
-                    android:drawableTint="@color/white"
-                    android:text="@string/add_place_of_interest" />
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/save" />
 
-                <Button
-                    android:id="@+id/btn_add_stay"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableRight="@drawable/habitacion_3"
-                    android:drawableTint="@color/white"
-                    android:text="@string/add_stay" />
+            <Button
+                android:id="@+id/btn_share_friends"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/share_with_friend" />
 
-                <Button
-                    android:id="@+id/btn_add_food"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableRight="@drawable/comer_3"
-                    android:drawableTint="@color/white"
-                    android:text="@string/add_food" />
+            <Button
+                android:id="@+id/btn_post"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/post" />
 
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/comments" />
-
-                <EditText
-                    android:id="@+id/editTextMultilineComments"
-                    android:layout_width="match_parent"
-                    android:layout_height="72dp"
-                    android:ems="10"
-                    android:gravity="start|top"
-                    android:inputType="textMultiLine" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <Button
-                        android:id="@+id/btn_save"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/save" />
-
-                    <Button
-                        android:id="@+id/btn_share_friends"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/share_with_friend" />
-
-                    <Button
-                        android:id="@+id/btn_post"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/post" />
-                </LinearLayout>
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp" />
-
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

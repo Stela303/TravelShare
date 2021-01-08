@@ -1,25 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.new_itinerary.AddNewStayActivity">
+    android:background="@drawable/habitacion"
+    android:backgroundTint="@color/beige_icons"
+    android:defaultFocusHighlightEnabled="true"
+    android:padding="10dp"
+    android:paddingStart="10dp"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp"
+    android:paddingEnd="10dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="10dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <com.google.android.material.appbar.AppBarLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.TravelShare.AppBarOverlay">
+        android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <TextView
+            android:id="@+id/textView17"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.TravelShare.PopupOverlay" />
+            android:layout_height="wrap_content"
+            android:fontFamily="casual"
+            android:text="@string/new_stay"
+            android:textSize="34sp"
+            android:textStyle="bold" />
 
-    </com.google.android.material.appbar.AppBarLayout>
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/name" />
 
-    <include layout="@layout/content_add_new_stay" />
+        <EditText
+            android:id="@+id/nameStaytxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/location" />
+
+        <EditText
+            android:id="@+id/locationStaytxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/price_night" />
+
+        <EditText
+            android:id="@+id/priceNigthStaytxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/info_extra" />
+
+        <EditText
+            android:id="@+id/infoExtraStaytxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/images" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnAddImageStay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:clickable="true"
+            android:tint="@color/beige_icons"
+            app:backgroundTint="@color/water_green"
+            app:srcCompat="@drawable/photo_add_roundedblack_512" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewStay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/btnSaveStay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawableRight="@android:drawable/ic_menu_save"
+            android:drawableTint="#FFFFFF"
+            android:text="@string/save" />
+
+    </LinearLayout>
+</ScrollView>

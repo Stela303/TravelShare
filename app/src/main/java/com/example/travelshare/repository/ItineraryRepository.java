@@ -13,12 +13,15 @@ import com.example.travelshare.data.model.InterestingPlace;
 import com.example.travelshare.data.model.Itinerary;
 import com.example.travelshare.data.model.Stay;
 import com.example.travelshare.library.CloudStorage;
+import com.example.travelshare.library.Constant;
+import com.example.travelshare.library.SingletonMap;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +31,9 @@ public class ItineraryRepository {
     public  final String COLLECTION_NAME="itineraries";
     public  final String SUCCESFUL_MESSAGE="DocumentSnapshot added with ID:";
     public  final String ERROR_MESSAGE="Error adding document";
-    public FirebaseFirestore db =  FirebaseFirestore.getInstance();
+    private final FirebaseFirestore db;
+    private final CloudStorage cloudStorage;
+
 
 
     private static class ItineraryRepositoryHolder {
@@ -40,14 +45,15 @@ public class ItineraryRepository {
     }
 
     private ItineraryRepository() {
-
+        this.db =  FirebaseFirestore.getInstance();
+        this.cloudStorage=new CloudStorage();
     }
 
-    public void create(Itinerary itinerary, Context context, CloudStorage cloudStorage, String url){
-        //itinerary.setCoverPhoto(cloudStorage.uploadaFile(url));
-       // updateURLPhotosPlaces(itinerary, cloudStorage);
-      //  updateURLPhotosFood(itinerary, cloudStorage);
-       // updateURLPhotosStay(itinerary, cloudStorage,context);
+    public void create(Itinerary itinerary, Context context){
+        cloudStorage.uploadCoverPhoto(itinerary.getImage(),itinerary);
+        updateURLPhotosPlaces(itinerary);
+        updateURLPhotosFood(itinerary);
+        updateURLPhotosStay(itinerary);
         itinerary.setDate_created(new Date());
         db.collection(COLLECTION_NAME)
                 .add(itinerary)
@@ -57,6 +63,7 @@ public class ItineraryRepository {
                         Log.d(TAG, SUCCESFUL_MESSAGE + documentReference.getId());
                         Toast requiredFieldsToast = Toast.makeText(context, R.string.itinerary_added,Toast.LENGTH_SHORT);
                         requiredFieldsToast.show();
+                        SingletonMap.getInstance().remove(Constant.ITINERARY_KEY);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -65,31 +72,34 @@ public class ItineraryRepository {
                         Log.w(TAG, ERROR_MESSAGE, e);
                         Toast requiredFieldsToast = Toast.makeText(context, R.string.itinerary_add_error, Toast.LENGTH_SHORT);
                         requiredFieldsToast.show();
+                        SingletonMap.getInstance().remove(Constant.ITINERARY_KEY);
                     }
                 });
     }
 
-    private void updateURLPhotosStay(Itinerary itinerary, CloudStorage cloudStorage,Context context) {
+      private void updateURLPhotosStay(Itinerary itinerary) {
+        List<String> images=new ArrayList<>();
        for( Stay stay : itinerary.getStays()){
-           //List<String> images = cloudStorage.uploadFiles(stay.getImagesLocal(),context);
-           //stay.setImagesLocal(images);
+            cloudStorage.uploadFiles(stay.getImages(),images);
+           stay.setImages(images);
        }
 
     }
 
-    private void updateURLPhotosFood(Itinerary itinerary, CloudStorage cloudStorage) {
+    private void updateURLPhotosFood(Itinerary itinerary) {
+        List<String> images=new ArrayList<>();
         for( FoodPlace food : itinerary.getFoodPlaces()){
-         //   List<String> images = cloudStorage.uploadFiles(food.getImagesLocal());
-         //   food.setImagesLocal(images);
+           cloudStorage.uploadFiles(food.getImages(),images);
+           food.setImages(images);
         }
     }
 
-    private void updateURLPhotosPlaces(Itinerary itinerary, CloudStorage cloudStorage) {
+    private void updateURLPhotosPlaces(Itinerary itinerary) {
+        List<String> images=new ArrayList<>();
         for( InterestingPlace place : itinerary.getInterestingPlaces()){
-         //   List<String> images = cloudStorage.uploadFiles(place.getImagesLocal());
-          //  place.setImagesLocal(images);
+           cloudStorage.uploadFiles(place.getImages(),images);
+           place.setImages(images);
         }
     }
-
 
 }

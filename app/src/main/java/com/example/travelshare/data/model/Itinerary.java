@@ -19,9 +19,9 @@ public class Itinerary {
     private Date date_created;
     private Date date_publishier;
     private String image;
-    private List<FoodPlace> foodPlaces;
-    private List<InterestingPlace> interestingPlaces;
-    private List<Stay> stays;
+    private List<FoodPlace> foodPlaces= new ArrayList<>();
+    private List<InterestingPlace> interestingPlaces= new ArrayList<>();
+    private List<Stay> stays= new ArrayList<>();
 
 
     public Itinerary() {

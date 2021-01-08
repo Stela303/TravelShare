@@ -5,9 +5,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import com.example.travelshare.R;
@@ -16,6 +18,8 @@ import com.example.travelshare.data.model.Itinerary;
 import com.example.travelshare.library.Constant;
 import com.example.travelshare.library.SingletonMap;
 
+import java.util.List;
+
 public class AddNewPlaceActivity extends AddContentNewItineraryActivity {
 
 
@@ -23,21 +27,21 @@ public class AddNewPlaceActivity extends AddContentNewItineraryActivity {
     EditText priceEditText;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (SingletonMap.getInstance().containsKey(Constant.ITINERARY_KEY)) {
             super.onCreate(savedInstanceState);
             super.setContentView(R.layout.activity_add_new_place);
-            super.itinerary = (Itinerary) SingletonMap.getInstance().get(Constant.ITINERARY_KEY);
             initializeVariables();
             initializeButtons();
-        }
     }
 
     private void initializeVariables() {
         super.initializeVariables(R.id.namePlacetxt, R.id.locationPlacetxt, R.id.infoExtraPlacetxt,R.id.rv_images,this);
         this.priceEditText = (EditText) findViewById(R.id.pricePlacetxt);
         this.topicSpinner = (Spinner) findViewById(R.id.topicPlaceSpinner);
+        ArrayAdapter<String> topicArrayAdapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_simple_item, ((List<String>) SingletonMap.getInstance().get(Constant.TOPICS)));
+        topicSpinner.setAdapter((SpinnerAdapter) topicArrayAdapter);
     }
 
     private void initializeButtons() {
@@ -59,14 +63,14 @@ public class AddNewPlaceActivity extends AddContentNewItineraryActivity {
     }
 
     protected boolean checkRequiredFields() {
-        return super.checkRequiredFields() && !priceEditText.getText().toString().equals("") ;
-                //&& topicSpinner.getSelectedItem().toString().equals("");
+        return super.checkRequiredFields() && !priceEditText.getText().toString().equals("")
+                     && !topicSpinner.getSelectedItem().toString().equals("");
     }
 
     protected void clearText() {
         super.clearText();
         this.priceEditText.setText("");
-        //falta limpiar tematicas
+        this.topicSpinner.setSelection(0);
     }
 
     private void addPlaceOfInterest() {
@@ -74,6 +78,8 @@ public class AddNewPlaceActivity extends AddContentNewItineraryActivity {
         interestingPlace.setName(super.nameEditText.getText().toString());
         interestingPlace.setLocation(super.locationEditText.getText().toString());
         interestingPlace.setPrice((Double.parseDouble(this.priceEditText.getText().toString())));
+        interestingPlace.setTopic(topicSpinner.getSelectedItem().toString());
+        interestingPlace.setImages(super.urls);
         this.itinerary.addInterestingPlace(interestingPlace);
         SingletonMap.getInstance().put(Constant.ITINERARY_KEY, this.itinerary);
     }

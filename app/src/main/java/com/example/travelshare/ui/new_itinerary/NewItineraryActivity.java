@@ -1,18 +1,22 @@
 package com.example.travelshare.ui.new_itinerary;
 
+import android.Manifest;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.travelshare.R;
 import com.example.travelshare.library.CloudStorage;
@@ -21,44 +25,53 @@ import com.example.travelshare.library.SingletonMap;
 import com.example.travelshare.data.model.Itinerary;
 import com.example.travelshare.repository.ItineraryRepository;
 import com.example.travelshare.repository.TopicRepository;
+import com.example.travelshare.ui.adapter.ImageAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.kosalgeek.android.photoutil.GalleryPhoto;
+import com.kosalgeek.android.photoutil.ImageLoader;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import pub.devrel.easypermissions.EasyPermissions;
 
 public class NewItineraryActivity extends AppCompatActivity {
 
 
         private Itinerary itinerary;
-
+        private static final int GALLERY_REQUEST = 2200 ;
+        private String[] galleryPermissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        private GalleryPhoto galleryPhoto;
+        private ArrayList<String> topics;
 
         EditText nameEditText;
         EditText locationEditText;
         Spinner topicSpinner;
         EditText commentsEditText;
-        ArrayList<String> topics;
-        ArrayAdapter<String> topicArrayAdapter;
-        TopicRepository topicRepository;
+        ImageView coverPhoto;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_itinerary);
-        if(SingletonMap.getInstance().get(Constant.ITINERARY_KEY)!=null){
+        initializeVariables();
+        initializeButtons();
+        if(SingletonMap.getInstance().containsKey(Constant.ITINERARY_KEY)){
             this.itinerary=(Itinerary)SingletonMap.getInstance().get(Constant.ITINERARY_KEY);
             fillFields();
         }else{
             this.itinerary = new Itinerary();
         }
-        initializeVariables();
-        initializeButtons();
 
     }
+
 
     private void fillFields() {
         if(!this.itinerary.getExtraInfo().equals("")){
@@ -66,6 +79,15 @@ public class NewItineraryActivity extends AppCompatActivity {
         }
         this.nameEditText.setText(itinerary.getName());
         this.locationEditText.setText(itinerary.getLocation());
+        int index=topics.indexOf(this.itinerary.getTopic());
+        topicSpinner.setSelection(index);
+        Bitmap bitmap= null;
+        try {
+            bitmap = ImageLoader.init().from(itinerary.getImage()).getBitmap();
+            this.coverPhoto.setImageBitmap(bitmap);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -106,7 +128,7 @@ public class NewItineraryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (checkRequiredFields()) {
                     updateValues();
-                    ItineraryRepository.getInstance().create(itinerary,getApplicationContext(),new CloudStorage(),"");
+                    ItineraryRepository.getInstance().create(itinerary,getApplicationContext());
                 } else {
                     Toast requiredFieldsToast = Toast.makeText(getApplicationContext(), R.string.fields_itinerary_required_message, Toast.LENGTH_SHORT);
                     requiredFieldsToast.show();
@@ -121,7 +143,7 @@ public class NewItineraryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 updateValues();
-                Intent intent = new Intent(v.getContext(), AddNewPlaceActivity.class);
+                Intent intent = new Intent(v.getContext(), ShareFriendsActivity.class);
                 startActivityForResult(intent, 0);
             }
         });
@@ -135,7 +157,7 @@ public class NewItineraryActivity extends AppCompatActivity {
                 if (checKContent()) {
                     updateValues();
                     itinerary.setDate_publishier(new Date());
-                    ItineraryRepository.getInstance().create(itinerary,getApplicationContext(),new CloudStorage(),"");
+                    ItineraryRepository.getInstance().create(itinerary,getApplicationContext());
                 } else {
                     Toast contentNecessaryToast = Toast.makeText(getApplicationContext(), R.string.content_itinerary_necessary_message, Toast.LENGTH_SHORT);
                     contentNecessaryToast.show();
@@ -148,28 +170,35 @@ public class NewItineraryActivity extends AppCompatActivity {
     private boolean checKContent() {
         return !(itinerary.getFoodPlaces().isEmpty()
                 && itinerary.getInterestingPlaces().isEmpty()
-                && itinerary.getStays().isEmpty());
+                && itinerary.getStays().isEmpty()
+        );
     }
 
     private void updateValues() {
         itinerary.setName(nameEditText.getText().toString());
         itinerary.setLocation(locationEditText.getText().toString());
         itinerary.setTopic(topicSpinner.getSelectedItem().toString());
+        System.out.println(itinerary.getTopic());
         itinerary.setExtraInfo(commentsEditText.getText().toString());
         SingletonMap.getInstance().put(Constant.ITINERARY_KEY, this.itinerary);
     }
+
 
     private void initializeVariables() {
         nameEditText = findViewById(R.id.namePlacetxt);
         locationEditText = findViewById(R.id.locationPlacetxt);
         topicSpinner = findViewById(R.id.spinnerTopic);
         commentsEditText = findViewById(R.id.editTextMultilineComments);
-       // this.topicRepository= (TopicRepository) SingletonMap.getInstance().get("topicRepository");
-        this.topicRepository=new TopicRepository();
+        coverPhoto = findViewById(R.id.coverPhotoImageView);
+        TopicRepository topicRepository = new TopicRepository();
+        this.galleryPhoto= new GalleryPhoto(getApplicationContext());
         this.topics=new ArrayList<>();
-        topics.add("");
-        this.topicRepository.searchAllTopics(new getAllTopicsOnCompleteListener());
-
+        if( SingletonMap.getInstance().containsKey(Constant.TOPICS)){
+            this.topics.addAll((List<String>)SingletonMap.getInstance().get(Constant.TOPICS));
+        }else{
+            topics.add("");
+            topicRepository.searchAllTopics(new getAllTopicsOnCompleteListener());
+        }
     }
 
     private void nextView(Class<?> cls, View view) {
@@ -190,13 +219,26 @@ public class NewItineraryActivity extends AppCompatActivity {
         post();
         save();
         share();
+        addCoverPhoto();
+    }
+
+    private void addCoverPhoto() {
+        Button btn = (Button) findViewById(R.id.btnAddCoverPhoto);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(galleryPhoto.openGalleryIntent(), GALLERY_REQUEST);
+            }
+        });
     }
 
     private boolean checkRequiredFields() {
         return !(nameEditText.getText().toString().equals("")
                 && topicSpinner.getSelectedItem().toString().equals("")
                 && locationEditText.getText().toString().equals("")
-                && commentsEditText.getText().toString().equals(""));
+                && commentsEditText.getText().toString().equals("")
+                && this.itinerary.getImage()==null
+        );
     }
 
     private class getAllTopicsOnCompleteListener implements OnCompleteListener<QuerySnapshot> {
@@ -214,12 +256,37 @@ public class NewItineraryActivity extends AppCompatActivity {
                     for (DocumentSnapshot document : querySnapshot.getDocuments()) {
                         topics.add(document.getString(getString(R.string.languague_code)));
                     }
-                    topicArrayAdapter =new ArrayAdapter<String>(getApplicationContext(),R.layout.spinner_simple_item,topics);
+                    ArrayAdapter<String> topicArrayAdapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_simple_item, topics);
                     topicSpinner.setAdapter((SpinnerAdapter) topicArrayAdapter);
+                    SingletonMap.getInstance().put(Constant.TOPICS,topics);
                 }
 
             } else {
                 Log.w(TAG, "Error getting documents: ", task.getException());
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == GALLERY_REQUEST) {
+                if (EasyPermissions.hasPermissions(this, galleryPermissions)) {
+                    this.galleryPhoto.setPhotoUri(data.getData());
+                    String photoPath = this.galleryPhoto.getPath();
+                    this.itinerary.setImage(photoPath);
+                    Bitmap bitmap = null;
+                    try {
+                        bitmap = ImageLoader.init().from(photoPath).getBitmap();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    this.coverPhoto.setImageBitmap(bitmap);
+                } else {
+                    EasyPermissions.requestPermissions(this, "Access for storage",
+                            101, galleryPermissions);
+                }
             }
         }
     }

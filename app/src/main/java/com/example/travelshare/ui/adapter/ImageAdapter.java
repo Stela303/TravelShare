@@ -2,20 +2,16 @@ package com.example.travelshare.ui.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.travelshare.R;
-import com.example.travelshare.data.model.Image;
 import com.example.travelshare.library.CloudStorage;
 import com.kosalgeek.android.photoutil.ImageLoader;
-import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -58,8 +54,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder>{
             System.out.println(mUrls);
             Bitmap bitmap= ImageLoader.init().from(mUrls.get(position)).getBitmap();
             holder.imageView.setImageBitmap(bitmap);
-            mUrls.set(position,cloudStorage.uploadFile(mUrls.get(position),context));
-            System.out.println(mUrls.get(position));
+            mUrls.set(position,mUrls.get(position));
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

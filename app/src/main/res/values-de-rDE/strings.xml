@@ -71,4 +71,6 @@
     <string name="do_you_want_add_more_food">Möchten Sie weitere Restaurants hinzufügen?</string>
     <string name="itinerary_added">Erfolgreich erstellte Reiseroute</string>
     <string name="itinerary_add_error">Ein Fehler ist aufgetreten. Die Reiseroute konnte nicht erstellt werden</string>
+    <string name="cover_photo">Titelbild:</string>
+    <string name="price">Preis:</string>
 </resources>

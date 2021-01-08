@@ -1,158 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/comer"
     android:backgroundTint="@color/beige_icons"
+    android:padding="10dp"
+    android:paddingStart="10dp"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp"
+    android:paddingEnd="10dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="10dp"
     tools:context=".ui.new_itinerary.AddFoodActivity">
 
-    <ScrollView
-        android:id="@+id/scrollView3"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.54"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13">
+        android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/textView24"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:fontFamily="casual"
+            android:text="@string/new_food"
+            android:textSize="34sp" />
 
-            <TextView
-                android:id="@+id/textView24"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="casual"
-                android:text="@string/new_food"
-                android:textSize="34sp" />
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/name" />
 
-            <TextView
-                android:id="@+id/textView23"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/name" />
+        <EditText
+            android:id="@+id/nameFoodTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName" />
 
-            <EditText
-                android:id="@+id/nameFoodTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/location" />
 
-            <TextView
-                android:id="@+id/textView21"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/location" />
+        <EditText
+            android:id="@+id/txtFoodLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName" />
 
-            <EditText
-                android:id="@+id/txtFoodLocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/type" />
 
-            <TextView
-                android:id="@+id/textView22"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/type" />
+        <Spinner
+            android:id="@+id/typeFoodSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-            <Spinner
-                android:id="@+id/typeFoodSpinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/category" />
 
-            <TextView
-                android:id="@+id/textView20"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/category" />
+        <Spinner
+            android:id="@+id/categoryFoodSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-            <Spinner
-                android:id="@+id/categoryFoodSpinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/averagePriceFoodTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/average_price" />
 
-            <TextView
-                android:id="@+id/averagePriceFoodTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/average_price" />
+        <EditText
+            android:id="@+id/averagePriceFoodtxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal" />
 
-            <EditText
-                android:id="@+id/averagePriceFoodtxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="numberDecimal" />
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/info_extra" />
 
-            <TextView
-                android:id="@+id/textView18"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/info_extra" />
+        <EditText
+            android:id="@+id/infoExtraFoodTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine" />
 
-            <EditText
-                android:id="@+id/infoExtraFoodTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:gravity="start|top"
-                android:inputType="textMultiLine" />
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="328dp"
+            android:layout_height="wrap_content"
+            android:text="@string/images" />
 
-            <TextView
-                android:id="@+id/textView25"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/images" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnAddImageFood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_horizontal"
+            android:clickable="true"
+            app:backgroundTint="@color/water_green"
+            app:srcCompat="@drawable/photo_add_roundedblack_512" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerviewFood"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerviewFood"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
 
-        </LinearLayout>
-    </ScrollView>
+        </androidx.recyclerview.widget.RecyclerView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnAddImageFood"
-        android:layout_width="66dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="65dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="97dp"
-        android:clickable="true"
-        app:backgroundTint="@color/water_green"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnSaveFood"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView3"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/photo_add_roundedblack_512" />
+        <Button
+            android:id="@+id/btnSaveFood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawableTint="#FFFFFF"
+            android:text="@string/save" />
 
-    <Button
-        android:id="@+id/btnSaveFood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="65dp"
-        android:layout_marginBottom="97dp"
-        android:drawableRight="@android:drawable/ic_menu_save"
-        android:drawableTint="#FFFFFF"
-        android:text="@string/save"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnAddImageFood"
-        app:layout_constraintHorizontal_bias="0.73"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</ScrollView>

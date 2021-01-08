@@ -34,11 +34,9 @@ public class AddNewStayActivity extends AddContentNewItineraryActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.activity_add_new_stay);
-        if (SingletonMap.getInstance().containsKey(Constant.ITINERARY_KEY)) {
-            super.itinerary = (Itinerary) SingletonMap.getInstance().get(Constant.ITINERARY_KEY);
-            initializeVariables();
-            initializeButtons();
-        }
+        initializeVariables();
+        initializeButtons();
+
     }
 
     private void initializeVariables() {
@@ -79,7 +77,7 @@ public class AddNewStayActivity extends AddContentNewItineraryActivity {
         stay.setName(super.nameEditText.getText().toString());
         stay.setLocation(super.locationEditText.getText().toString());
         stay.setPriceNight((Double.parseDouble(this.priceNight.getText().toString())));
-//        stay.setImagesLocal(super.urls);
+        stay.setImages(super.urls);
         if(!super.infoExtraEditText.getText().toString().equals("")){
             stay.setExtraInfo(super.infoExtraEditText.getText().toString());
         }

@@ -26,7 +26,7 @@
         android:requestLegacyExternalStorage="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelShare">
-        <activity android:name=".ShareFriendsActivity"></activity>
+        <activity android:name=".ui.new_itinerary.ShareFriendsActivity"></activity>
         <activity android:name=".ui.new_itinerary.AddFoodActivity" />
         <activity
             android:name=".ui.new_itinerary.AddNewStayActivity"
