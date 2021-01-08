@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/nav_itinerary"
         android:name="com.example.travelshare.ui.shares_with_me.SharesWithMeFragment"
-        android:label="@string/menu_new"
+        android:label="@string/share"
         tools:layout="@layout/fragment_share_with_me" />
     <fragment
         android:id="@+id/nav_saved"

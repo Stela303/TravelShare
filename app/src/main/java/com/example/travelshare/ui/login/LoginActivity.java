@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.example.travelshare.GuestMainActivity;
 import com.example.travelshare.MainActivity;
 import com.example.travelshare.R;
+import com.example.travelshare.library.Constant;
+import com.example.travelshare.library.SingletonMap;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -46,6 +48,17 @@ public class LoginActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser!=null){
+            SingletonMap.getInstance().put(Constant.CURRENT_USER, currentUser);
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            CollectionReference usersRef = db.collection("users");
+            usersRef.whereEqualTo("googleID", Objects.requireNonNull(currentUser).getUid()).get()
+                    .addOnCompleteListener(task1 -> {
+                        if (task1.isSuccessful()){
+                            if(!Objects.requireNonNull(task1.getResult()).isEmpty()) {
+                                SingletonMap.getInstance().put(Constant.CURRENT_USER_ID, task1.getResult().getDocuments().get(0));
+                            }
+                        }
+                    });
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
         }
@@ -57,9 +70,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         Objects.requireNonNull(getSupportActionBar()).hide();
         mAuth = FirebaseAuth.getInstance();
-
         createRequest();
-
         findViewById(R.id.google).setOnClickListener(v -> signIn());
 
 
@@ -122,6 +133,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         // Sign in success, update UI with the signed-in user's information
                         FirebaseUser user = mAuth.getCurrentUser();
+                        SingletonMap.getInstance().put(Constant.CURRENT_USER, user);
                         FirebaseFirestore db = FirebaseFirestore.getInstance();
                         CollectionReference usersRef = db.collection("users");
                         usersRef.whereEqualTo("googleID", Objects.requireNonNull(user).getUid()).get()
@@ -135,7 +147,10 @@ public class LoginActivity extends AppCompatActivity {
                                             newUser.put("googleID", user.getUid());
                                             newUser.put("name", user.getDisplayName());
                                             newUser.put("email", user.getEmail());
-                                            usersRef.add(newUser);
+                                            String id = usersRef.add(newUser).getResult().getId();
+                                            SingletonMap.getInstance().put(Constant.CURRENT_USER_ID, id);
+                                        }else{
+                                            SingletonMap.getInstance().put(Constant.CURRENT_USER_ID, task1.getResult().getDocuments().get(0));
                                         }
                                     }
                                 });

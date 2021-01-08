@@ -71,7 +71,7 @@ public class ShareFriendsActivity extends AppCompatActivity implements SearchVie
 
         @Override
         public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
+            users= new ArrayList<>();
             if (task.isSuccessful()) {
 
                 QuerySnapshot querySnapshot = task.getResult();
@@ -113,7 +113,9 @@ public class ShareFriendsActivity extends AppCompatActivity implements SearchVie
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        if(newText.length()!=0){
+        if(newText.length()==0){
+            userRepository.searchAllUsers(new getAllUsersOnCompleteListener());
+        }else{
             userRepository.searchUserByEmail(new getAllUsersOnCompleteListener(),newText);
         }
 

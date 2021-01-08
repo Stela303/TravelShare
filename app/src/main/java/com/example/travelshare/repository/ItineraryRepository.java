@@ -17,7 +17,9 @@ import com.example.travelshare.library.Constant;
 import com.example.travelshare.library.SingletonMap;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.StorageReference;
 
@@ -54,8 +56,10 @@ public class ItineraryRepository {
         updateURLPhotosPlaces(itinerary);
         updateURLPhotosFood(itinerary);
         updateURLPhotosStay(itinerary);
+        DocumentSnapshot user= (DocumentSnapshot) SingletonMap.getInstance().get(Constant.CURRENT_USER_ID);
         itinerary.setDate_created(new Date());
-        db.collection(COLLECTION_NAME)
+        itinerary.setUser((String) user.get("name"));
+        db.collection("users").document(user.getId()).collection(COLLECTION_NAME)
                 .add(itinerary)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override

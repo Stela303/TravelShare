@@ -1,72 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.new_itinerary.ShareFriendsActivity">
 
-    <ScrollView
-        android:layout_width="393dp"
-        android:layout_height="809dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp"
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp">
 
-        <LinearLayout
+        <SearchView
+            android:id="@+id/searchUserview"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="@drawable/search"
+            android:backgroundTintMode="src_in"
+            android:iconifiedByDefault="false"
+            android:padding="10dp"
+            android:paddingStart="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:queryHint="@string/search">
+
+        </SearchView>
+
+        <ListView
+            android:id="@+id/usersListView"
+            android:layout_width="match_parent"
+            android:layout_height="238dp"
+            android:paddingTop="10dp">
+
+        </ListView>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <TextView
+            android:id="@+id/textView19"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:text="@string/select_friends" />
 
-            <SearchView
-                android:id="@+id/searchUserview"
-                android:layout_width="331dp"
-                android:layout_height="49dp">
+        <ListView
+            android:id="@+id/selectedListView"
+            android:layout_width="match_parent"
+            android:layout_height="269dp" />
 
-            </SearchView>
+        <Button
+            android:id="@+id/btnShareWithFriends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawableRight="@drawable/red_2"
+            android:drawableTint="#FFFFFF"
+            android:text="@string/share_with_friend" />
 
-            <ListView
-                android:id="@+id/usersListView"
-                android:layout_width="326dp"
-                android:layout_height="248dp">
+    </LinearLayout>
 
-            </ListView>
-
-            <View
-                android:id="@+id/divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="?android:attr/listDivider" />
-
-            <LinearLayout
-                android:layout_width="326dp"
-                android:layout_height="234dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView19"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="TextView" />
-
-                <ListView
-                    android:id="@+id/selectedListView"
-                    android:layout_width="match_parent"
-                    android:layout_height="247dp" />
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/btnShareWithFriends"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableRight="@drawable/red_2"
-                android:drawableTint="#FFFFFF"
-                android:text="@string/share_with_friend" />
-
-        </LinearLayout>
-    </ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

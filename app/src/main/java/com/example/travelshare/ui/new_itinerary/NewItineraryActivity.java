@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.travelshare.MainActivity;
 import com.example.travelshare.R;
 import com.example.travelshare.library.CloudStorage;
 import com.example.travelshare.library.Constant;
@@ -129,6 +130,7 @@ public class NewItineraryActivity extends AppCompatActivity {
                 if (checkRequiredFields()) {
                     updateValues();
                     ItineraryRepository.getInstance().create(itinerary,getApplicationContext());
+                    nextView(MainActivity.class, v);
                 } else {
                     Toast requiredFieldsToast = Toast.makeText(getApplicationContext(), R.string.fields_itinerary_required_message, Toast.LENGTH_SHORT);
                     requiredFieldsToast.show();
@@ -157,7 +159,9 @@ public class NewItineraryActivity extends AppCompatActivity {
                 if (checKContent()) {
                     updateValues();
                     itinerary.setDate_publishier(new Date());
+                    itinerary.setPublished(true);
                     ItineraryRepository.getInstance().create(itinerary,getApplicationContext());
+                    nextView(MainActivity.class, v);
                 } else {
                     Toast contentNecessaryToast = Toast.makeText(getApplicationContext(), R.string.content_itinerary_necessary_message, Toast.LENGTH_SHORT);
                     contentNecessaryToast.show();
@@ -177,6 +181,7 @@ public class NewItineraryActivity extends AppCompatActivity {
     private void updateValues() {
         itinerary.setName(nameEditText.getText().toString());
         itinerary.setLocation(locationEditText.getText().toString());
+        System.out.println(topicSpinner.getSelectedItem());
         itinerary.setTopic(topicSpinner.getSelectedItem().toString());
         System.out.println(itinerary.getTopic());
         itinerary.setExtraInfo(commentsEditText.getText().toString());
@@ -195,6 +200,8 @@ public class NewItineraryActivity extends AppCompatActivity {
         this.topics=new ArrayList<>();
         if( SingletonMap.getInstance().containsKey(Constant.TOPICS)){
             this.topics.addAll((List<String>)SingletonMap.getInstance().get(Constant.TOPICS));
+            ArrayAdapter<String> topicArrayAdapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_simple_item, topics);
+            topicSpinner.setAdapter((SpinnerAdapter) topicArrayAdapter);
         }else{
             topics.add("");
             topicRepository.searchAllTopics(new getAllTopicsOnCompleteListener());

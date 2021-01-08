@@ -46,4 +46,8 @@ public class CloudStorage {
         }
     }
 
+    public StorageReference getStorageRef(){
+        return this.storageRef;
+    }
+
 }

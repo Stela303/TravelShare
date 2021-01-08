@@ -1,6 +1,7 @@
 package com.example.travelshare.adapter.recycler.list;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.travelshare.R;
 import com.example.travelshare.data.model.FoodPlace;
 import com.example.travelshare.data.model.Stay;
+import com.example.travelshare.library.CloudStorage;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.squareup.picasso.Picasso;
 
@@ -26,10 +29,12 @@ public class StayAdapter extends RecyclerView.Adapter<StayAdapter.ViewHolder> {
     Context context;
     List<Stay> stay;
     private OnStayListener mOnStayListener;
+    CloudStorage storage;
     public StayAdapter(Context context, List<Stay> stay, OnStayListener onStayListener) {
         this.context=context;
         this.stay=stay;
         this.mOnStayListener=onStayListener;
+        this.storage= new CloudStorage();
     }
 
     @Override
@@ -38,7 +43,14 @@ public class StayAdapter extends RecyclerView.Adapter<StayAdapter.ViewHolder> {
         holder.location.setText(stay.get(position).getLocation());
         holder.info.setText(stay.get(position).getExtraInfo());
         holder.price.setText(Double.toString(stay.get(position).getPriceNight()));
-        Picasso.with(this.context).load(stay.get(position).getImages().get(0)).into(holder.image);
+        this.storage.getStorageRef().child(stay.get(position).getImages().get(0)).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                // Got the download URL for 'users/me/profile.png'
+                Picasso.with(context).load(uri).into(holder.image);
+            }
+        });
+        //Picasso.with(this.context).load(stay.get(position).getImages().get(0)).into(holder.image);
     }
 
     @NonNull

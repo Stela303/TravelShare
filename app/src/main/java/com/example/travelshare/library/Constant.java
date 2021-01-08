@@ -7,4 +7,6 @@ public class Constant {
     public static final String USER_COLLECTION="users";
     public static final String SHARE_WITH_ITINERARIES="share";
     public static final String TOPICS="topics";
+    public static final String CURRENT_USER="CurrentUser";
+    public static final String CURRENT_USER_ID="CurrentUserId";
 }

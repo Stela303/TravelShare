@@ -17,6 +17,7 @@ public class Itinerary {
     private String user;
     private String extraInfo;
     private Date date_created;
+    private boolean published = false;
     private Date date_publishier;
     private String image;
     private List<FoodPlace> foodPlaces= new ArrayList<>();
@@ -162,5 +163,13 @@ public class Itinerary {
 
     public void setDate_publishier(Date date_publishier) {
         this.date_publishier = date_publishier;
+    }
+
+    public boolean isPublished() {
+        return published;
+    }
+
+    public void setPublished(boolean published) {
+        this.published = published;
     }
 }

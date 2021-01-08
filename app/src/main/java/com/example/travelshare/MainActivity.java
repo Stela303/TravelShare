@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.travelshare.library.Constant;
+import com.example.travelshare.library.SingletonMap;
 import com.example.travelshare.ui.login.LoginActivity;
 import com.example.travelshare.ui.new_itinerary.NewItineraryActivity;
 import com.firebase.ui.auth.AuthUI;
@@ -85,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initAccount() {
-        signInAccount = FirebaseAuth.getInstance().getCurrentUser();
+        //signInAccount = FirebaseAuth.getInstance().getCurrentUser();
+        signInAccount = (FirebaseUser) SingletonMap.getInstance().get(Constant.CURRENT_USER);
         if(signInAccount!= null){
             navUsername.setText(signInAccount.getDisplayName());
             navEmail.setText(signInAccount.getEmail());
@@ -117,6 +120,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void logOut() {
         AuthUI.getInstance().signOut(this);
+        SingletonMap.getInstance().remove(Constant.CURRENT_USER_ID);
+        SingletonMap.getInstance().remove(Constant.CURRENT_USER);
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);
     }

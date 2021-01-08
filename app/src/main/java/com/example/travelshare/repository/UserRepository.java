@@ -35,7 +35,7 @@ public class UserRepository {
         this.userRef.document(user.getId()).collection(Constant.SHARE_WITH_ITINERARIES).add(itinerary).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
-                Toast requiredFieldsToast = Toast.makeText(context, R.string.itinerary_added,Toast.LENGTH_SHORT);
+                Toast requiredFieldsToast = Toast.makeText(context, R.string.share_friends,Toast.LENGTH_SHORT);
                 requiredFieldsToast.show();
             }
         })

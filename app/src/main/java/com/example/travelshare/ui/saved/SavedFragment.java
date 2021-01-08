@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.example.travelshare.ItineraryActivity;
 import com.example.travelshare.adapter.recycler.ItineraryAdapter;
 import com.example.travelshare.R;
+import com.example.travelshare.library.Constant;
 import com.example.travelshare.library.SingletonMap;
 import com.example.travelshare.data.model.Itinerary;
 import com.example.travelshare.ui.login.LoginActivity;
@@ -37,8 +38,6 @@ public class SavedFragment extends Fragment {
     ItineraryAdapter mItineraryAdapter;
     private FirebaseUser signInAccount;
     TabLayout tabs;
-    private TabItem mine;
-    private TabItem other;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,16 +48,11 @@ public class SavedFragment extends Fragment {
         recyclerViewItinerary.setLayoutManager(new LinearLayoutManager(root.getContext()));
 
         db=FirebaseFirestore.getInstance();
-        signInAccount = FirebaseAuth.getInstance().getCurrentUser();
+        //signInAccount = FirebaseAuth.getInstance().getCurrentUser();
+        signInAccount = (FirebaseUser) SingletonMap.getInstance().get(Constant.CURRENT_USER);
         if(signInAccount!= null){
-            db.collection("users").whereEqualTo("googleID", Objects.requireNonNull(signInAccount).getUid()).get()
-                    .addOnCompleteListener(task1 -> {
-                        if (task1.isSuccessful()){
-                            DocumentSnapshot user= task1.getResult().getDocuments().get(0);
-                            userId = (String) user.getId();
-                            this.initializeItinerary();
-                        }
-                    });
+            userId = ((DocumentSnapshot) SingletonMap.getInstance().get(Constant.CURRENT_USER_ID)).getId();
+            this.initializeItinerary();
         }else{
             Intent intent = new Intent(root.getContext(), LoginActivity.class);
             startActivity(intent);
@@ -85,7 +79,7 @@ public class SavedFragment extends Fragment {
 
             }
             public void onClickMine(){
-                Query query= db.collection("users").document(userId).collection("itineraries").whereEqualTo("published",false);
+                Query query= db.collection("users").document(userId).collection("itineraries").whereEqualTo("published", false);
                 this.initializeItinerary(query);
             }
 
@@ -105,7 +99,7 @@ public class SavedFragment extends Fragment {
     }
 
     private void initializeItinerary() {
-        Query query= db.collection("users").document(userId).collection("itineraries").whereEqualTo("published",false);
+        Query query= db.collection("users").document(userId).collection("itineraries").whereEqualTo("published", false);
         FirestoreRecyclerOptions<Itinerary> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Itinerary>()
                 .setQuery(query, Itinerary.class).build();
         mItineraryAdapter = new ItineraryAdapter(firestoreRecyclerOptions, root.getContext());

@@ -49,7 +49,6 @@ public class AddFoodActivity extends AddContentNewItineraryActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_food);
-        super.itinerary = (Itinerary) SingletonMap.getInstance().get(Constant.ITINERARY_KEY);
         initializeVariables();
         initializeButtons();
     }

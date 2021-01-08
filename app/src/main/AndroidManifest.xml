@@ -27,7 +27,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelShare">
         <activity android:name=".ui.new_itinerary.ShareFriendsActivity"></activity>
-        <activity android:name=".ui.new_itinerary.AddFoodActivity" />
+        <activity android:name=".ui.new_itinerary.AddFoodActivity"
+            android:theme="@style/Theme.TravelShare.NoActionBar"
+            />
         <activity
             android:name=".ui.new_itinerary.AddNewStayActivity"
             android:label="@string/title_activity_add_new_stay"

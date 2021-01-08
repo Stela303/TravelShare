@@ -1,6 +1,7 @@
 package com.example.travelshare.adapter.recycler.list;
 
 import android.content.Context;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.travelshare.R;
 import com.example.travelshare.data.model.InterestingPlace;
+import com.example.travelshare.library.CloudStorage;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.squareup.picasso.Picasso;
 
@@ -26,10 +29,12 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder> 
     Context context;
     private OnPlaceListener mOnPlaceListener;
     private List<InterestingPlace> places;
+    CloudStorage storage;
     public PlaceAdapter(Context context, List<InterestingPlace> places, OnPlaceListener onPlaceListener) {
         this.context=context;
         this.places=places;
         this.mOnPlaceListener=onPlaceListener;
+        this.storage= new CloudStorage();
 
     }
 
@@ -47,7 +52,14 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder> 
         holder.price.setText(Double.toString(places.get(position).getPrice()));
         holder.info.setText(places.get(position).getExtraInfo());
         holder.topic.setText(places.get(position).getTopic());
-        Picasso.with(this.context).load(places.get(position).getImages().get(0)).into(holder.image);
+        this.storage.getStorageRef().child(places.get(position).getImages().get(0)).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                // Got the download URL for 'users/me/profile.png'
+                Picasso.with(context).load(uri).into(holder.image);
+            }
+        });
+        //Picasso.with(this.context).load(places.get(position).getImages().get(0)).into(holder.image);
     }
 
     @Override

@@ -38,14 +38,6 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <string name="title_activity_add_new_place">AddNewPlaceActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_add_new_stay">AddNewStayActivity</string>
     <!-- Strings related to new itinerary -->
     <string name="new_itinerary">New itinerary</string>
@@ -53,6 +45,7 @@
     <string name="new_food">New food place</string>
     <string name="new_stay">New stay</string>
     <string name="price_night">Price / Night:</string>
+    <string name="price">Price:</string>
     <string name="name">Name:</string>
     <string name="topic">Topic:</string>
     <string name="add_place_of_interest">Add place of interest</string>
@@ -80,5 +73,7 @@
     <string name="do_you_want_add_more_food">Do you want to add more food places?</string>
     <string name="itinerary_added">Successfully created itinerary</string>
     <string name="itinerary_add_error">An error has occurred. The itinerary could not be created</string>
-    <string name="price">Price:</string>
+    <string name="share">Share with me</string>
+    <string name="select_friends">Selected friends</string>
+    <string name="share_friends">Successful shared itinerary!</string>
 </resources>

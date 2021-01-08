@@ -1,6 +1,7 @@
 package com.example.travelshare.adapter.recycler.list;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.travelshare.R;
 import com.example.travelshare.data.model.FoodPlace;
+import com.example.travelshare.library.CloudStorage;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -21,10 +24,12 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     Context context;
     List<FoodPlace> food;
     private OnFoodListener mOnFoodListener;
+    CloudStorage storage;
     public FoodAdapter(Context context, List<FoodPlace> food, OnFoodListener onFoodListener) {
         this.context=context;
         this.food=food;
         this.mOnFoodListener=onFoodListener;
+        this.storage= new CloudStorage();
     }
 
     @NonNull
@@ -42,7 +47,14 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
         holder.category.setText(food.get(position).getCategory());
         holder.info.setText(food.get(position).getExtraInfo());
         holder.price.setText(Double.toString(food.get(position).getAveragePrice()));
-        Picasso.with(this.context).load(food.get(position).getImages().get(0)).into(holder.image);
+        this.storage.getStorageRef().child(food.get(position).getImages().get(0)).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                // Got the download URL for 'users/me/profile.png'
+                Picasso.with(context).load(uri).into(holder.image);
+            }
+        });
+        //Picasso.with(this.context).load(food.get(position).getImages().get(0)).into(holder.image);
     }
 
     @Override

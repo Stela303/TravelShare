@@ -2,17 +2,20 @@
     <string name="languague_code">es</string>
     <string name="app_name">TravelShare</string>
     <!-- Strings related to login -->
-    <string name="prompt_email">Correo</string>
-    <string name="prompt_password">Contraseña</string>
-    <string name="action_sign_in">Iniciar sesión o registrar</string>
-    <string name="action_sign_in_short">Iniciar sesión</string>
     <string name="welcome">"¡Bienvenido!"</string>
-    <string name="invalid_username">Nombre de usuario no valido</string>
-    <string name="invalid_password">La contraseña debe ser mayor de 5 carácteres</string>
     <string name="login_failed">"Inicio de sesión fallido"</string>
     <string name="login_google">Inicia sesión con Google</string>
     <string name="logout">Cerrar Sesión</string>
     <string name="guest">Continuar como invitado</string>
+    <string name="title_activity_guest_main">GuestMainActivity</string>
+
+
+    <string name="title_activity_images">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="title_activity_add_new_place">AddNewPlaceActivity</string>
+    <string name="title_activity_add_new_stay">AddNewStayActivity</string>
 
     <string name="menu_home">TravelShare</string>
     <string name="menu_profile">Perfil</string>
@@ -46,6 +49,7 @@
     <string name="new_stay">Nueva estancia</string>
     <string name="price_night">Precio / Noche:</string>
     <string name="average_price">Precio medio:</string>
+    <string name="price">Precio:</string>
     <string name="name">Nombre:</string>
     <string name="topic">Temática:</string>
     <string name="add_place_of_interest">Añadir lugar de interés</string>
@@ -72,5 +76,7 @@
     <string name="itinerary_added">Itinerario creado con éxito</string>
     <string name="itinerary_add_error">Ha ocurrido un error. El itinerario no se ha podido crear</string>
     <string name="cover_photo">Foto portada:</string>
-    <string name="price">Precio:</string>
+    <string name="share">Compartido conmigo</string>
+    <string name="select_friends">Amigos seleccionados</string>
+    <string name="share_friends">¡Itinerario compartido con éxito!</string>
 </resources>

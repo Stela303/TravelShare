@@ -1,17 +1,19 @@
 <resources>
     <string name="app_name">TravelShare</string>
     <!-- Strings related to login -->
-    <string name = "prompt_email"> Posta </string>
-    <string name = "prompt_password"> Password </string>
-    <string name = "action_sign_in"> Accedi o registrati </string>
-    <string name = "action_sign_in_short"> Accedi </string>
     <string name = "welcome"> "Benvenuto!" </string>
-    <string name = "invalid_username"> Nome utente non valido </string>
-    <string name = "invalid_password"> La password deve contenere più di 5 caratteri </string>
     <string name = "login_failed"> "Accesso non riuscito" </string>
     <string name = "login_google"> Accedi con Google </string>
     <string name = "logout"> Chiudi sessione </string>
     <string name = "guest"> Continua come ospite </string>
+    <string name="title_activity_guest_main">GuestMainActivity</string>
+
+    <string name="title_activity_images">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="title_activity_add_new_place">AddNewPlaceActivity</string>
+    <string name="title_activity_add_new_stay">AddNewStayActivity</string>
 
     <string name = "menu_home"> TravelShare </string>
     <string name = "menu_profile"> Profilo </string>
@@ -55,6 +57,7 @@
     <string name="comments">Comenti:</string>
     <string name="info_extra">Informazioni aggiuntive:</string>
     <string name="price_nigth">Prezzo / notte:</string>
+    <string name="price">Prezzo:</string>
     <string name="average_price">Metà prezzo:</string>
     <string name="images">Immagini:</string>
     <string name="type">Genere:</string>
@@ -72,5 +75,7 @@
     <string name="itinerary_added">Itinerario creato con successo</string>
     <string name="itinerary_add_error">C\'è stato un errore. Impossibile creare l\'itinerario</string>
     <string name="cover_photo">Foto di copertina:</string>
-    <string name="price">Prezzo:</string>
+    <string name="share">Condiviso con me</string>
+    <string name="select_friends">Amici selezionati</string>
+    <string name="share_friends">Itinerario condiviso di successo!</string>
 </resources>

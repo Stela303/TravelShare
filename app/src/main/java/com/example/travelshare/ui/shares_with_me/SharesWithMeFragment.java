@@ -47,7 +47,7 @@ public class SharesWithMeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        root = inflater.inflate(R.layout.fragment_saved, container, false);
+        root = inflater.inflate(R.layout.fragment_share_with_me, container, false);
         recyclerViewItinerary = root.findViewById(R.id.savedItineraries);
         recyclerViewItinerary.setLayoutManager(new LinearLayoutManager(root.getContext()));
         db=FirebaseFirestore.getInstance();

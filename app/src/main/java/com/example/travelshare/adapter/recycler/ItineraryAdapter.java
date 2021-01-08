@@ -1,6 +1,7 @@
 package com.example.travelshare.adapter.recycler;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.travelshare.R;
 import com.example.travelshare.data.model.Itinerary;
+import com.example.travelshare.library.CloudStorage;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.squareup.picasso.Picasso;
 
@@ -22,6 +25,7 @@ public class ItineraryAdapter extends FirestoreRecyclerAdapter<Itinerary, Itiner
 
     private OnItemClickListener listener;
     Context context;
+    CloudStorage storage;
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
      * FirestoreRecyclerOptions} for configuration options.
@@ -31,6 +35,7 @@ public class ItineraryAdapter extends FirestoreRecyclerAdapter<Itinerary, Itiner
     public ItineraryAdapter(@NonNull FirestoreRecyclerOptions<Itinerary> options, Context context) {
         super(options);
         this.context=context;
+        this.storage= new CloudStorage();
     }
 
     @Override
@@ -39,12 +44,15 @@ public class ItineraryAdapter extends FirestoreRecyclerAdapter<Itinerary, Itiner
         holder.location.setText(model.getLocation());
         holder.user.setText(model.getUser());
         holder.topic.setText(model.getTopic());
-        Picasso.with(this.context).load(model.getImage()).into(holder.image);
+        this.storage.getStorageRef().child(model.getImage()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                // Got the download URL for 'users/me/profile.png'
+                Picasso.with(context).load(uri).into(holder.image);
+            }
+        });
+        //Picasso.with(this.context).load(model.getImage()).into(holder.image);
         //holder.image.setImageURI(Uri.parse(model.getImage()));
-        /*
-        if(FirebaseAuth.getInstance().getCurrentUser().getUid()!=null && model.getUser().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
-            holder.user.setText("LO HE SUBIDO YO");
-        }*/
     }
 
     @NonNull

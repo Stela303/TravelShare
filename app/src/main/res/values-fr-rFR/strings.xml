@@ -1,17 +1,20 @@
 <resources>
     <string name = "app_name"> TravelShare </string>
     <!-- Strings related to login -->
-    <string name = "prompt_email"> Courrier </string>
-    <string name = "prompt_password"> Mot de passe </string>
-    <string name = "action_sign_in"> Connectez-vous ou inscrivez-vous </string>
-    <string name = "action_sign_in_short"> Connexion </string>
     <string name = "welcome"> "Bienvenue!" </string>
-    <string name = "invalid_username"> Nom d\'utilisateur non valide </string>
-    <string name = "invalid_password"> Le mot de passe doit contenir plus de 5 caractères </string>
     <string name = "login_failed"> "Connexion échouée" </string>
     <string name = "login_google"> Connectez-vous avec Google </string>
     <string name = "logout"> Fermer la session </string>
     <string name = "guest"> Continuer en tant qu\'invité </string>
+    <string name="title_activity_guest_main">GuestMainActivity</string>
+
+
+    <string name="title_activity_images">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="title_activity_add_new_place">AddNewPlaceActivity</string>
+    <string name="title_activity_add_new_stay">AddNewStayActivity</string>
 
     <string name = "menu_home"> TravelShare </string>
     <string name = "menu_profile"> Profil </string>
@@ -43,8 +46,9 @@
     <string name="new_place">Nouveau lieu d\'intérêt</string>
     <string name="new_food">Nouveau lieu de restauration</string>
     <string name="new_stay">Nouveau séjour</string>
-    <string name="price_night">Prix ​​/ nuit:</string>
-    <string name="average_price">Prix ​​moyen:</string>
+    <string name="price_night">Prix/nuit:</string>
+    <string name="average_price">Prix moyen:</string>
+    <string name="price">Prix:</string>
     <string name="name">Prénom:</string>
     <string name="topic">Thématique:</string>
     <string name="add_place_of_interest">Ajouter un lieu d\'intérêt</string>
@@ -72,5 +76,7 @@
     <string name="itinerary_added">Itinéraire créé avec succès</string>
     <string name="itinerary_add_error">Une erreur est survenue. Impossible de créer l\'itinéraire</string>
     <string name="cover_photo">Photo de couverture:</string>
-    <string name="price">Prix:</string>
+    <string name="share">Partagé avec moi</string>
+    <string name="select_friends">Amis sélectionnés</string>
+    <string name="share_friends">Itinéraire partagé réussi!</string>
 </resources>
