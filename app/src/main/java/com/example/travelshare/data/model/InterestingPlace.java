@@ -1,5 +1,7 @@
 package com.example.travelshare.data.model;
 
+import com.google.firebase.storage.StorageReference;
+
 import java.util.List;
 
 public class InterestingPlace {

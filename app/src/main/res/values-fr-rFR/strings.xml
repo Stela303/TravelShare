@@ -1,4 +1,47 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="languague_code">fr</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Correo</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_sign_in">Iniciar sesión o registrar</string>
+    <string name="action_sign_in_short">Iniciar sesión</string>
+    <string name="welcome">"¡Bienvenido!"</string>
+    <string name="invalid_username">Nombre de usuario no valido</string>
+    <string name="invalid_password">La contraseña debe ser mayor de 5 carácteres</string>
+    <string name="login_failed">"Inicio de sesión fallido"</string>
+    <!-- Strings related to new itinerary -->
+    <string name="new_itinerary">Nouvel itinéraire</string>
+    <string name="new_place">Nouveau lieu d\'intérêt</string>
+    <string name="new_food">Nouveau lieu de restauration</string>
+    <string name="new_stay">Nouveau séjour</string>
+    <string name="price_night">Prix ​​/ nuit:</string>
+    <string name="average_price">Prix ​​moyen:</string>
+    <string name="name">Prénom:</string>
+    <string name="topic">Thématique:</string>
+    <string name="add_place_of_interest">Ajouter un lieu d\'intérêt</string>
+    <string name="add_stay">Ajouter un séjour</string>
+    <string name="add_food">Ajouter de la nourriture</string>
+    <string name="post">Publier</string>
+    <string name="share_with_friend">Partager avec des amis</string>
+    <string name="comments">Commentaires:</string>
+    <string name="info_extra">Information additionnelle:</string>
+    <string name="price_nigth">Prix ​​/ nuit:</string>
+    <string name="images">Images:</string>
+    <string name="type">Type:</string>
+    <string name="category">Catégorie:</string>
+    <string name="fields_itinerary_required_message">Veuillez remplir tous les champs obligatoires</string>
+    <string name="content_itinerary_necessary_message">Veuillez ajouter un lieu d\'intérêt, un séjour ou un repas.</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="place_added">Le lieu d\'intérêt a été ajouté à l\'itinéraire</string>
+    <string name="food_added">Lieu de restauration ajouté à l\'itinéraire</string>
+    <string name="stay_added">Le séjour a été ajouté à l\'itinéraire</string>
+    <string name="do_you_want_add_more_places">Voulez-vous ajouter d\'autres lieux d\'intérêt?</string>
+    <string name="do_you_want_add_more_stay">Voulez-vous ajouter plus de chambres?</string>
+    <string name="do_you_want_add_more_food">Voulez-vous ajouter plus de lieux de restauration?</string>
+    <string name="itinerary_added">Itinéraire créé avec succès</string>
+    <string name="itinerary_add_error">Une erreur est survenue. Impossible de créer l\'itinéraire</string>
+
     <string name = "app_name"> TravelShare </string>
     <!-- Strings related to login -->
     <string name = "prompt_email"> Courrier </string>

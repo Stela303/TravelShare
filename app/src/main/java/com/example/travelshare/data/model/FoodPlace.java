@@ -1,9 +1,8 @@
 package com.example.travelshare.data.model;
 
+import com.google.firebase.storage.StorageReference;
 import com.google.type.DateTime;
-
 import org.jetbrains.annotations.NotNull;
-
 import java.net.URL;
 import java.util.List;
 import java.util.function.DoubleBinaryOperator;
